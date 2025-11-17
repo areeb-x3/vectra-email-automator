@@ -63,4 +63,6 @@ def signup_user(request):
 
 @login_required
 def dashboard(request):
-    return render(request, "dashboard.html")
+    avatar = request.user.first_name[0].upper() + request.user.last_name[0].upper()
+    full_name = request.user.first_name + request.user.last_name
+    return render(request, "dashboard.html", {"full_name": full_name, "avatar": avatar})
