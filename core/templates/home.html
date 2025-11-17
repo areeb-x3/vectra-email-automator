@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automate Your Email Campaigns</title>
+    <link rel="stylesheet" href="{% static 'home_style.css' %}">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">📧 Vectra</div>
+        <button class="sign-in-btn" onclick="handleSignIn()">Sign In</button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Automate Your Email Campaigns</h1>
+        <p>Save hours every week with intelligent email automation. Reach the right people at the right time with personalized campaigns.</p>
+        <div class="cta-buttons">
+            <button class="btn-primary" onclick="handleGetStarted()">Get Started Free</button>
+            <button class="btn-secondary" onclick="handleDemo()">Watch Demo</button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Powerful Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Smart Automation</h3>
+                <p>Set up complex email sequences that respond to user behavior in real-time.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Advanced Analytics</h3>
+                <p>Track opens, clicks, conversions and gain actionable insights about your campaigns.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3>Audience Segmentation</h3>
+                <p>Target specific segments with personalized content for higher engagement rates.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Beautiful Templates</h3>
+                <p>Choose from hundreds of professionally designed email templates.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔗</div>
+                <h3>Easy Integration</h3>
+                <p>Connect with your favorite tools like CRM, e-commerce, and webhooks.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Enterprise Security</h3>
+                <p>Bank-level encryption and compliance with GDPR, CCPA, and industry standards.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <h2>Ready to Transform Your Email Marketing?</h2>
+        <p>Join thousands of businesses automating their email campaigns today</p>
+        <button class="btn-primary" onclick="handleGetStarted()" style="background: #FFFFFF; color: #001D4A;">Start Your Free Trial</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Email Automator. All rights reserved. | Privacy Policy | Terms of Service</p>
+    </footer>
+
+    <script>
+        function handleSignIn() {
+            window.location.href = "../login/?show=login";
+        }
+
+        function handleGetStarted() {
+            window.location.href = "../login/?show=signup";
+        }
+
+        function handleDemo() {
+            alert('Loading demo video...');
+            console.log('Demo button clicked');
+        }
+
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Fade in elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .stat-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

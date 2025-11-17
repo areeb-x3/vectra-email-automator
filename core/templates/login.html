@@ -14,16 +14,17 @@
             <h1 class="form-title">Welcome Back</h1>
             <p class="form-subtitle">Sign in to your account</p>
 
-            <form id="loginFormElement">
+            <form id="loginFormElement" method="POST" action="/login/">
+                {% csrf_token %}
                 <div class="form-group">
                     <label for="loginEmail">Email Address</label>
-                    <input type="email" id="loginEmail" placeholder="you@example.com" required>
+                    <input type="email" id="loginEmail" name = "loginEMail" placeholder="you@example.com" required>
                     <div class="error" id="loginEmailError"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="loginPassword">Password</label>
-                    <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                    <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter your password" required>
                     <div class="error" id="loginPasswordError"></div>
                 </div>
 
@@ -49,40 +50,41 @@
                 ✓ Account created successfully! Please sign in.
             </div>
 
-            <form id="signupFormElement">
+            <form id="signupFormElement" method="POST" action="/signup/">
+                {% csrf_token %}
                 <div class="form-group full-width">
                     <div>
                         <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" placeholder="John" required>
+                        <input type="text" id="firstName" name="firstNameValue" placeholder="John" required>
                         <div class="error" id="firstNameError"></div>
                     </div>
                     <div>
                         <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" placeholder="Doe" required>
+                        <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
                         <div class="error" id="lastNameError"></div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="signupEmail">Email Address</label>
-                    <input type="email" id="signupEmail" placeholder="you@example.com" required>
+                    <input type="email" id="signupEmail" name="signupEmail" placeholder="you@example.com" required>
                     <div class="error" id="signupEmailError"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="signupPassword">Password</label>
-                    <input type="password" id="signupPassword" placeholder="Create a strong password" required>
+                    <input type="password" id="signupPassword" name="signupPassword" placeholder="Create a strong password" required>
                     <div class="error" id="signupPasswordError"></div>
                 </div>
 
                 <div class="form-group">
                     <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
                     <div class="error" id="confirmPasswordError"></div>
                 </div>
 
                 <div class="checkbox-group">
-                    <input type="checkbox" id="agreeTerms" required>
+                    <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
                     <label for="agreeTerms">I agree to the Terms & Conditions</label>
                 </div>
 
@@ -100,6 +102,7 @@
         const signupForm = document.getElementById('signupForm');
         const loginFormElement = document.getElementById('loginFormElement');
         const signupFormElement = document.getElementById('signupFormElement');
+        const agreeTerms = document.getElementById('agreeTerms').checked;
 
         function toggleForms() {
             loginForm.classList.toggle('active');
@@ -137,7 +140,6 @@
 
         // Login Form Handler
         loginFormElement.addEventListener('submit', (e) => {
-            e.preventDefault();
             clearErrors();
 
             const email = document.getElementById('loginEmail').value.trim();
@@ -157,19 +159,16 @@
                 showError('loginPasswordError', 'Password is required');
                 isValid = false;
             }
-
-            if (isValid) {
-                alert('Sign in successful! (This is a demo)');
-                loginFormElement.reset();
+            if (!isValid) {
+                e.preventDefault();
             }
         });
 
         // Sign Up Form Handler
         signupFormElement.addEventListener('submit', (e) => {
-            e.preventDefault();
             clearErrors();
 
-            const firstName = document.getElementById('firstName').value.trim();
+            const firstName = document.getElementById('firstNameValue').value.trim();
             const lastName = document.getElementById('lastName').value.trim();
             const email = document.getElementById('signupEmail').value.trim();
             const password = document.getElementById('signupPassword').value;
@@ -223,6 +222,21 @@
                 setTimeout(() => {
                     toggleForms();
                 }, 1500);
+            }
+        });
+
+        // Handle Which page to load
+        window.addEventListener("DOMContentLoaded", () => {
+            const params = new URLSearchParams(window.location.search);
+            const mode = params.get("show");
+
+            if (mode === "login") {
+                loginForm.classList.add('active');
+                signupForm.classList.remove('active');
+            }
+            if (mode === "signup") {
+                signupForm.classList.add('active');
+                loginForm.classList.remove('active');
             }
         });
     </script>
