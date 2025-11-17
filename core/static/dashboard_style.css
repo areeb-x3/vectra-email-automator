@@ -308,6 +308,29 @@ html, body {
     }
 }
 
+/* SIDEBAR POPUP */
+.profile-popup {
+    position: absolute;
+    bottom: 60px;
+    left: 10px;
+    width: 200px;
+    background: var(--gray-100);
+    color: #fff;
+    border-radius: 8px;
+    padding: 12px;
+    display: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    z-index: 5000;
+}
+
+.profile-popup.open {
+    display: block;
+}
+
+.profile-popup .popup-actions button {
+    border-radius: var(--radius-lg);
+}
+
 /* ==================== MAIN CONTAINER ==================== */
 .main-container {
     flex: 1;

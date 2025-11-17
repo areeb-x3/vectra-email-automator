@@ -7,6 +7,7 @@ const tabButtons = document.querySelectorAll('.tab-btn');
 const navItems = document.querySelectorAll('.nav-item');
 const navGroups = document.querySelectorAll('[data-toggle]');
 
+
 // Mobile Menu Toggle
 mobileMenuBtn?.addEventListener('click', () => {
     sidebar?.classList.toggle('active');
@@ -98,4 +99,31 @@ window.addEventListener('resize', function() {
         sidebar?.classList.remove('active');
         sidebarOverlay?.classList.remove('active');
     }
+});
+
+// Handle Pop-up menu
+document.addEventListener("DOMContentLoaded", () => {
+    const trigger = document.getElementById("profileTrigger");
+    const popup = document.getElementById("profilePopup");
+
+    if (!trigger || !popup) return;
+
+    const togglePopup = () => {
+        popup.classList.toggle("open");
+    };
+
+    const closePopup = () => {
+        popup.classList.remove("open");
+    };
+
+    trigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        togglePopup();
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!popup.contains(e.target) && !trigger.contains(e.target)) {
+            closePopup();
+        }
+    });
 });

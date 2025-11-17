@@ -123,13 +123,24 @@
             </nav>
 
             <div class="sidebar-footer">
-                <button class="sidebar-footer-item">
+                <button class="sidebar-footer-item" id="profileTrigger" type="button">
                     <div class="user-avatar">{{ avatar }}</div>
                     <div>
                         <span>{{ full_name }}</span>
                         <span class="badge badge-secondary">Free</span>
                     </div>
                 </button>
+            
+                <!-- Profile Popup -->
+                <div class="profile-popup" id="profilePopup">
+                    <div class="popup-actions">
+                        <button class="btn btn-sm btn-sec btn-secondary w-100 mb-2">Account Settings</button>
+                        <form action="/logout/" method="POST" class="w-100">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-sm btn-danger w-100"> Logout</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </aside>
 
@@ -162,10 +173,10 @@
             <div class="tabs-container">
                 <div class="tabs-nav">
                     <button class="tab-btn active" data-tab="home">Home</button>
-                    <button class="tab-btn" data-tab="apps">Apps</button>
-                    <button class="tab-btn" data-tab="files">Files</button>
-                    <button class="tab-btn" data-tab="projects">Projects</button>
-                    <button class="tab-btn" data-tab="learn">Learn</button>
+                    <button class="tab-btn" data-tab="recent">Recent</button>
+                    <button class="tab-btn" data-tab="scheduled">Scheduled</button>
+                    <button class="tab-btn" data-tab="spaces">Vectral Spaces</button>
+                    <button class="tab-btn" data-tab="guides">Guides</button>
                 </div>
                 <div class="tabs-actions">
                     <button class="btn btn-primary rounded-pill">
@@ -178,78 +189,13 @@
             <main class="content-area">
                 <!-- Home Tab -->
                 <div class="tab-content active" id="tab-home">
-                    <!-- Recent Apps -->
-                    <section class="content-section">
-                        <div class="section-header">
-                            <h3 class="section-title">Recent Apps</h3>
-                            <button class="btn btn-ghost">View All</button>
-                        </div>
-                        <div class="cards-grid">
-                            <div class="app-card">
-                                <div class="card-icon-header">
-                                    <div class="card-icon">
-                                        <i class="fas fa-image"></i>
-                                    </div>
-                                    <button class="btn btn-sm btn-icon">
-                                        <i class="fas fa-star"></i>
-                                    </button>
-                                </div>
-                                <h4 class="card-title">PixelMaster</h4>
-                                <p class="card-description">Advanced image editing and composition</p>
-                                <button class="btn btn-sm btn-secondary w-100">Open</button>
-                            </div>
-
-                            <div class="app-card">
-                                <div class="card-icon-header">
-                                    <div class="card-icon">
-                                        <i class="fas fa-brush"></i>
-                                    </div>
-                                    <button class="btn btn-sm btn-icon">
-                                        <i class="fas fa-star"></i>
-                                    </button>
-                                </div>
-                                <h4 class="card-title">VectorPro</h4>
-                                <p class="card-description">Professional vector graphics creation</p>
-                                <button class="btn btn-sm btn-secondary w-100">Open</button>
-                            </div>
-
-                            <div class="app-card">
-                                <div class="card-icon-header">
-                                    <div class="card-icon">
-                                        <i class="fas fa-video"></i>
-                                    </div>
-                                    <button class="btn btn-sm btn-icon">
-                                        <i class="fas fa-star"></i>
-                                    </button>
-                                </div>
-                                <h4 class="card-title">VideoStudio</h4>
-                                <p class="card-description">Cinematic video editing and production</p>
-                                <button class="btn btn-sm btn-secondary w-100">Open</button>
-                            </div>
-
-                            <div class="app-card">
-                                <div class="card-icon-header">
-                                    <div class="card-icon">
-                                        <i class="fas fa-sparkles"></i>
-                                    </div>
-                                    <button class="btn btn-sm btn-icon">
-                                        <i class="fas fa-star"></i>
-                                    </button>
-                                </div>
-                                <h4 class="card-title">MotionFX</h4>
-                                <p class="card-description">Stunning visual effects and animations</p>
-                                <button class="btn btn-sm btn-secondary w-100">Open</button>
-                            </div>
-                        </div>
-                    </section>
-
                     <!-- Files and Projects Row -->
                     <div class="row g-4 mb-5">
-                        <!-- Recent Files -->
+                        <!-- Recent -->
                         <div class="col-lg-6">
                             <section class="content-section">
                                 <div class="section-header">
-                                    <h3 class="section-title">Recent Files</h3>
+                                    <h3 class="section-title">Recent</h3>
                                     <button class="btn btn-ghost">View All</button>
                                 </div>
                                 <div class="file-list">
@@ -303,11 +249,11 @@
                             </section>
                         </div>
 
-                        <!-- Active Projects -->
+                        <!-- Scheduled Mails -->
                         <div class="col-lg-6">
                             <section class="content-section">
                                 <div class="section-header">
-                                    <h3 class="section-title">Active Projects</h3>
+                                    <h3 class="section-title">Scheduled Mails</h3>
                                     <button class="btn btn-ghost">View All</button>
                                 </div>
                                 <div class="project-list">
@@ -439,18 +385,18 @@
                     </section>
                 </div>
 
-                <!-- Other Tabs (Apps, Files, Projects, Learn) -->
-                <div class="tab-content" id="tab-apps">
-                    <p>Apps content here</p>
+                <!-- Other Tabs (Recent, Scheduled, Projects, Learn) -->
+                <div class="tab-content" id="tab-recent">
+                    <p>Recent content here</p>
                 </div>
-                <div class="tab-content" id="tab-files">
-                    <p>Files content here</p>
+                <div class="tab-content" id="tab-scheduled">
+                    <p>Scheduled content here</p>
                 </div>
-                <div class="tab-content" id="tab-projects">
-                    <p>Projects content here</p>
+                <div class="tab-content" id="tab-spaces">
+                    <p>Vectral Spaces content here</p>
                 </div>
-                <div class="tab-content" id="tab-learn">
-                    <p>Learn content here</p>
+                <div class="tab-content" id="tab-guides">
+                    <p>Guides content here</p>
                 </div>
             </main>
         </div>
