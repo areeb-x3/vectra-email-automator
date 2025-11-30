@@ -11,7 +11,11 @@
     <!-- Header -->
     <header>
         <div class="logo">📧 Vectra</div>
-        <button class="sign-in-btn" onclick="handleSignIn()">Sign In</button>
+        {% if user.is_authenticated %}
+            <button class="sign-in-btn" onclick="handleSignIn()">Dashboard</button>
+        {% else %}
+            <button class="sign-in-btn" onclick="handleSignIn()">Sign In</button>
+        {% endif %}
     </header>
 
     <!-- Hero Section -->
@@ -19,8 +23,12 @@
         <h1>Automate Your Email Campaigns</h1>
         <p>Save hours every week with intelligent email automation. Reach the right people at the right time with personalized campaigns.</p>
         <div class="cta-buttons">
-            <button class="btn-primary" onclick="handleGetStarted()">Get Started Free</button>
-            <button class="btn-secondary" onclick="handleDemo()">Watch Demo</button>
+            {% if user.is_authenticated %}
+                <button class="btn-secondary" onclick="handleSignIn()">Open Vectra</button>
+            {% else %}
+                <button class="btn-primary" onclick="handleGetStarted()">Get Started Free</button>
+                <button class="btn-secondary" onclick="handleDemo()">Watch Demo</button>
+            {% endif %}
         </div>
     </section>
 
@@ -65,7 +73,9 @@
     <section class="final-cta">
         <h2>Ready to Transform Your Email Marketing?</h2>
         <p>Join thousands of businesses automating their email campaigns today</p>
-        <button class="btn-primary" onclick="handleGetStarted()" style="background: #FFFFFF; color: #001D4A;">Start Your Free Trial</button>
+         {% if not user.is_authenticated %}
+            <button class="btn-primary" onclick="handleGetStarted()" style="background: #FFFFFF; color: #001D4A;">Start Your Free Trial</button>
+         {% endif %}
     </section>
 
     <!-- Footer -->

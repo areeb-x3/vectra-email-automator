@@ -31,95 +31,35 @@
             </div>
 
             <nav class="sidebar-nav">
-                <button class="nav-item active" data-nav="home">
+                <button class="nav-item active" data-nav="tab-home">
                     <i class="fas fa-home"></i>
                     <span>Home</span>
                 </button>
 
-                <div class="nav-group">
-                    <button class="nav-item" data-toggle="nav-submenu-apps">
-                        <i class="fas fa-th"></i>
-                        <span>Apps</span>
-                        <span class="badge badge-primary">2</span>
-                        <i class="fas fa-chevron-down toggle-icon"></i>
-                    </button>
-                    <div class="nav-submenu" id="nav-submenu-apps">
-                        <a href="#" class="nav-subitem">All Apps</a>
-                        <a href="#" class="nav-subitem">Recent</a>
-                        <a href="#" class="nav-subitem">Updates <span class="badge badge-primary">2</span></a>
-                        <a href="#" class="nav-subitem">Installed</a>
-                    </div>
-                </div>
+                <button class="nav-item" data-nav="tab-scheduled">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>Scheduled</span>
+                </button>
 
-                <div class="nav-group">
-                    <button class="nav-item" data-toggle="nav-submenu-files">
-                        <i class="fas fa-file-alt"></i>
-                        <span>Files</span>
-                        <i class="fas fa-chevron-down toggle-icon"></i>
-                    </button>
-                    <div class="nav-submenu" id="nav-submenu-files">
-                        <a href="#" class="nav-subitem">Recent</a>
-                        <a href="#" class="nav-subitem">Shared with me <span class="badge badge-primary">3</span></a>
-                        <a href="#" class="nav-subitem">Favorites</a>
-                        <a href="#" class="nav-subitem">Trash</a>
-                    </div>
-                </div>
+                <button class="nav-item" data-nav="tab-groups">
+                    <i class="fa-solid fa-user-group"></i>
+                    <span>Groups</span>
+                </button>
 
-                <div class="nav-group">
-                    <button class="nav-item" data-toggle="nav-submenu-projects">
-                        <i class="fas fa-layer-group"></i>
-                        <span>Projects</span>
-                        <span class="badge badge-primary">4</span>
-                        <i class="fas fa-chevron-down toggle-icon"></i>
-                    </button>
-                    <div class="nav-submenu" id="nav-submenu-projects">
-                        <a href="#" class="nav-subitem">Active <span class="badge badge-primary">4</span></a>
-                        <a href="#" class="nav-subitem">Archived</a>
-                        <a href="#" class="nav-subitem">Templates</a>
-                    </div>
-                </div>
+                <button class="nav-item" data-nav="tab-history">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>History</span>
+                </button>
 
-                <div class="nav-group">
-                    <button class="nav-item" data-toggle="nav-submenu-learn">
-                        <i class="fas fa-book-open"></i>
-                        <span>Learn</span>
-                        <i class="fas fa-chevron-down toggle-icon"></i>
-                    </button>
-                    <div class="nav-submenu" id="nav-submenu-learn">
-                        <a href="#" class="nav-subitem">Tutorials</a>
-                        <a href="#" class="nav-subitem">Courses</a>
-                        <a href="#" class="nav-subitem">Webinars</a>
-                        <a href="#" class="nav-subitem">Resources</a>
-                    </div>
-                </div>
+                <button class="nav-item" data-nav="tab-guides">
+                    <i class="fa-solid fa-book-open"></i>
+                    <span>Guides</span>
+                </button>
 
-                <div class="nav-group">
-                    <button class="nav-item" data-toggle="nav-submenu-community">
-                        <i class="fas fa-users"></i>
-                        <span>Community</span>
-                        <i class="fas fa-chevron-down toggle-icon"></i>
-                    </button>
-                    <div class="nav-submenu" id="nav-submenu-community">
-                        <a href="#" class="nav-subitem">Explore</a>
-                        <a href="#" class="nav-subitem">Following</a>
-                        <a href="#" class="nav-subitem">Challenges</a>
-                        <a href="#" class="nav-subitem">Events</a>
-                    </div>
-                </div>
-
-                <div class="nav-group">
-                    <button class="nav-item" data-toggle="nav-submenu-resources">
-                        <i class="fas fa-bookmark"></i>
-                        <span>Resources</span>
-                        <i class="fas fa-chevron-down toggle-icon"></i>
-                    </button>
-                    <div class="nav-submenu" id="nav-submenu-resources">
-                        <a href="#" class="nav-subitem">Stock Photos</a>
-                        <a href="#" class="nav-subitem">Fonts</a>
-                        <a href="#" class="nav-subitem">Icons</a>
-                        <a href="#" class="nav-subitem">Templates</a>
-                    </div>
-                </div>
+                <button class="nav-item" data-nav="tab-community">
+                    <i class="fa-regular fa-comments"></i>
+                    <span>Community</span>
+                </button>
             </nav>
 
             <div class="sidebar-footer">
@@ -169,157 +109,108 @@
                 </div>
             </header>
 
-            <!-- Tabs Navigation -->
-            <div class="tabs-container">
-                <div class="tabs-nav">
-                    <button class="tab-btn active" data-tab="home">Home</button>
-                    <button class="tab-btn" data-tab="recent">Recent</button>
-                    <button class="tab-btn" data-tab="scheduled">Scheduled</button>
-                    <button class="tab-btn" data-tab="spaces">Vectral Spaces</button>
-                    <button class="tab-btn" data-tab="guides">Guides</button>
-                </div>
-                <div class="tabs-actions">
-                    <button class="btn btn-primary rounded-pill">
-                        <i class="fas fa-plus me-2"></i>Compose
-                    </button>
-                </div>
-            </div>
-
             <!-- Content Area -->
             <main class="content-area">
-                <!-- Home Tab -->
-                <div class="tab-content active" id="tab-home">
-                    <!-- Files and Projects Row -->
-                    <div class="row g-4 mb-5">
-                        <!-- Recent -->
-                        <div class="col-lg-6">
-                            <section class="content-section">
-                                <div class="section-header">
-                                    <h3 class="section-title">Recent</h3>
-                                    <button class="btn btn-ghost">View All</button>
-                                </div>
-                                <div class="file-list">
-                                    <div class="file-item">
-                                        <div class="file-icon">
-                                            <i class="fas fa-image"></i>
-                                        </div>
-                                        <div class="file-info">
-                                            <p class="file-name">Brand Redesign.pxm</p>
-                                            <p class="file-meta">PixelMaster • 2 hours ago</p>
-                                        </div>
-                                        <span class="badge badge-outline">3 people</span>
-                                        <button class="btn btn-sm btn-ghost">Open</button>
-                                    </div>
-
-                                    <div class="file-item">
-                                        <div class="file-icon">
-                                            <i class="fas fa-brush"></i>
-                                        </div>
-                                        <div class="file-info">
-                                            <p class="file-name">Company Logo.vec</p>
-                                            <p class="file-meta">VectorPro • Yesterday</p>
-                                        </div>
-                                        <span class="badge badge-outline">2 people</span>
-                                        <button class="btn btn-sm btn-ghost">Open</button>
-                                    </div>
-
-                                    <div class="file-item">
-                                        <div class="file-icon">
-                                            <i class="fas fa-video"></i>
-                                        </div>
-                                        <div class="file-info">
-                                            <p class="file-name">Product Launch Video.vid</p>
-                                            <p class="file-meta">VideoStudio • 3 days ago</p>
-                                        </div>
-                                        <button class="btn btn-sm btn-ghost">Open</button>
-                                    </div>
-
-                                    <div class="file-item">
-                                        <div class="file-icon">
-                                            <i class="fas fa-sparkles"></i>
-                                        </div>
-                                        <div class="file-info">
-                                            <p class="file-name">UI Animation.mfx</p>
-                                            <p class="file-meta">MotionFX • Last week</p>
-                                        </div>
-                                        <span class="badge badge-outline">4 people</span>
-                                        <button class="btn btn-sm btn-ghost">Open</button>
-                                    </div>
-                                </div>
-                            </section>
+                <div class="tab-content active" id="tab-home"> Home </div>
+                <div class="tab-content" id="tab-scheduled"> Scheduled </div>
+                <div class="tab-content" id="tab-groups"> Groups </div>
+                <div class="tab-content" id="tab-history"> History </div>
+                
+                <!-- Guides Section (Static) -->
+                <div class="tab-content" id="tab-guides">
+                    <!-- Hero Banner -->
+                    <section class="hero-banner mb-5">
+                        <div class="hero-content">
+                            <span class="badge badge-light mb-3">Premium</span>
+                            <h2 class="hero-title">Vectra Support</h2>
+                            <p class="hero-description">Experience dedicated 24/7 premium assistance on Vectra, delivering reliable, fast, and expert support to ensure seamless performance and user satisfaction.</p>
+                            <div class="hero-actions">
+                                <button class="btn btn-light rounded-pill">Upgrade Plan</button>
+                                <button class="btn btn-outline-light rounded-pill" id="notIntrested">Not Intrested</button>
+                            </div>
                         </div>
-
-                        <!-- Scheduled Mails -->
-                        <div class="col-lg-6">
-                            <section class="content-section">
-                                <div class="section-header">
-                                    <h3 class="section-title">Scheduled Mails</h3>
-                                    <button class="btn btn-ghost">View All</button>
-                                </div>
-                                <div class="project-list">
-                                    <div class="project-item">
-                                        <div class="project-header">
-                                            <h4 class="project-name">Website Redesign</h4>
-                                            <span class="badge badge-outline">Due Jun 15</span>
-                                        </div>
-                                        <p class="project-description">Complete overhaul of company website</p>
-                                        <div class="project-progress">
-                                            <div class="progress-bar-wrapper">
-                                                <div class="progress" style="width: 75%"></div>
-                                            </div>
-                                            <span class="progress-label">75%</span>
-                                        </div>
-                                        <div class="project-meta">
-                                            <span><i class="fas fa-users me-1"></i>4 members</span>
-                                            <span><i class="fas fa-file me-1"></i>23 files</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="project-item">
-                                        <div class="project-header">
-                                            <h4 class="project-name">Mobile App Launch</h4>
-                                            <span class="badge badge-outline">Due Jul 30</span>
-                                        </div>
-                                        <p class="project-description">Design and assets for new mobile application</p>
-                                        <div class="project-progress">
-                                            <div class="progress-bar-wrapper">
-                                                <div class="progress" style="width: 60%"></div>
-                                            </div>
-                                            <span class="progress-label">60%</span>
-                                        </div>
-                                        <div class="project-meta">
-                                            <span><i class="fas fa-users me-1"></i>6 members</span>
-                                            <span><i class="fas fa-file me-1"></i>42 files</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="project-item">
-                                        <div class="project-header">
-                                            <h4 class="project-name">Brand Identity</h4>
-                                            <span class="badge badge-outline">Due May 25</span>
-                                        </div>
-                                        <p class="project-description">New brand guidelines and assets</p>
-                                        <div class="project-progress">
-                                            <div class="progress-bar-wrapper">
-                                                <div class="progress" style="width: 90%"></div>
-                                            </div>
-                                            <span class="progress-label">90%</span>
-                                        </div>
-                                        <div class="project-meta">
-                                            <span><i class="fas fa-users me-1"></i>3 members</span>
-                                            <span><i class="fas fa-file me-1"></i>18 files</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
+                        <div class="hero-visual d-none d-lg-block">
+                            <div class="rotating-circles">
+                                <div class="circle circle-1"></div>
+                                <div class="circle circle-2"></div>
+                                <div class="circle circle-3"></div>
+                                <div class="circle circle-4"></div>
+                            </div>
                         </div>
-                    </div>
+                    </section>
+                    <!-- First Party Guides (Static) -->
+                    <section>
+                        <div class="section-header">
+                            <h3 class="section-title">Guides from Vectra</h3>
+                        </div>
+                        <div class="cards-grid">
+                            <div class="community-card">
+                                <div class="card-image">
+                                    <img src="https://images.pexels.com/photos/196650/pexels-photo-196650.jpeg" alt="Writing with Vectra">
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title">Writing Emails with Vectra</h4>
+                                    <p class="card-meta">by Alex Morgan</p>
+                                    <div class="card-stats">
+                                        <span><i class="fas fa-heart text-danger me-1"></i>342</span>
+                                        <span><i class="fas fa-comment text-info me-1"></i>28</span>
+                                        <span class="ms-auto text-muted">2 days ago</span>
+                                    </div>
+                                </div>
+                            </div>
 
-                    <!-- Community Guides -->
-                    <section class="content-section">
+                            <div class="community-card">
+                                <div class="card-image">
+                                    <img src="https://images.pexels.com/photos/5473955/pexels-photo-5473955.jpeg" alt="Exploring Vectra AI">
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title">Exploring Vectra AI</h4>
+                                    <p class="card-meta">by Priya Sharma</p>
+                                    <div class="card-stats">
+                                        <span><i class="fas fa-heart text-danger me-1"></i>518</span>
+                                        <span><i class="fas fa-comment text-info me-1"></i>47</span>
+                                        <span class="ms-auto text-muted">1 week ago</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="community-card">
+                                <div class="card-image">
+                                    <img src="https://images.pexels.com/photos/9062772/pexels-photo-9062772.jpeg" alt="Scheduling Mails">
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title">Scheduling Mails for Better Sleep</h4>
+                                    <p class="card-meta">by Thomas Wright</p>
+                                    <div class="card-stats">
+                                        <span><i class="fas fa-heart text-danger me-1"></i>276</span>
+                                        <span><i class="fas fa-comment text-info me-1"></i>32</span>
+                                        <span class="ms-auto text-muted">3 days ago</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="community-card">
+                                <div class="card-image">
+                                    <img src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg" alt="Vectral Spaces">
+                                </div>
+                                <div class="card-content">
+                                    <h4 class="card-title">Vectral Spaces 101</h4>
+                                    <p class="card-meta">by Olivia Chen</p>
+                                    <div class="card-stats">
+                                        <span><i class="fas fa-heart text-danger me-1"></i>189</span>
+                                        <span><i class="fas fa-comment text-info me-1"></i>15</span>
+                                        <span class="ms-auto text-muted">5 days ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <br><br>
+                    <!-- Third Party Guides (Static) -->
+                    <section>
                         <div class="section-header">
                             <h3 class="section-title">Community Guides</h3>
-                            <button class="btn btn-ghost">Explore</button>
                         </div>
                         <div class="cards-grid">
                             <div class="community-card">
@@ -384,25 +275,221 @@
                         </div>
                     </section>
                 </div>
+                <!-- Community Section (Static) -->
+                <div class="tab-content" id="tab-community">
+                    <!-- Threads -->
+                    <div class="row g-4 mb-5">
+                        <div class="col-lg-9">
+                            <section class="content-section">
+                                <div class="threads-section-header">
+                                    <h2 class="section-title">Threads</h2>
+                                    <div>
+                                        <button class="threads-icons">
+                                            <i class="fa-solid fa-angle-down"></i>
+                                            Topic
+                                        </button>
+                                        <button class="threads-icons">
+                                            <i class="fa-solid fa-filter"></i>
+                                            Sort
+                                        </button>
+                                        <button class="threads-icons">
+                                            <i class="fa-solid fa-book-bookmark"></i>
+                                            Bookmarks
+                                        </button>
+                                        <button class="threads-icons">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="threads-list">
+                                    <div class="threads-item">
+                                        <div class="threads-user">
+                                            <div class="threads-user-avatar">RM</div>
+                                            <h4 class="threads-user-name">Rahul M</h4>
+                                        </div>
+                                        <div class="threads-header">
+                                            <h4 class="threads-name">Best way to schedule multiple emails at once</h4>
+                                        </div>
+                                        <p class="threads-description">I'm trying to figure out if there's a faster workflow for adding several scheduled emails. Is there a bulk option or do I need to set times one by one?</p>
+                                        <div class="threads-footer">
+                                            <span class="tag"># schedule</span>
+                                            <span>2h ago</span>
+                                            <span class="ms-auto">
+                                                <button class="threads-icons" type="button">
+                                                    <i class="fa-regular fa-bookmark" id="bookmarkIcon"></i>
+                                                </button>
+                                                <button class="threads-icons icon-like" type="button">
+                                                    <i class="fa-solid fa-heart"></i>
+                                                    21
+                                                </button>
+                                                <button class="threads-icons icon-reply" type="button">
+                                                    <i class="fa-solid fa-message"></i>
+                                                    Reply
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
 
-                <!-- Other Tabs (Recent, Scheduled, Projects, Learn) -->
-                <div class="tab-content" id="tab-recent">
-                    <p>Recent content here</p>
-                </div>
-                <div class="tab-content" id="tab-scheduled">
-                    <p>Scheduled content here</p>
-                </div>
-                <div class="tab-content" id="tab-spaces">
-                    <p>Vectral Spaces content here</p>
-                </div>
-                <div class="tab-content" id="tab-guides">
-                    <p>Guides content here</p>
+                                    <div class="threads-list">
+                                    <div class="threads-item">
+                                        <div class="threads-user">
+                                            <div class="threads-user-avatar">KP</div>
+                                            <h4 class="threads-user-name">Karan P</h4>
+                                        </div>
+                                        <div class="threads-header">
+                                            <h4 class="threads-name">How do I compose with saved groups</h4>
+                                        </div>
+                                        <p class="threads-description">When composing a new email, I want to auto-select a group instead of picking users manually. Anyone know where that option is located?</p>
+                                        <div class="threads-footer">
+                                            <span class="tag"># compose</span>
+                                            <span class="tag"># groups</span>
+                                            <span>5h ago</span>
+                                            <span class="ms-auto">
+                                                <button class="threads-icons" type="button">
+                                                    <i class="fa-regular fa-bookmark" id="bookmarkIcon"></i>
+                                                </button>
+                                                <button class="threads-icons icon-like" type="button">
+                                                    <i class="fa-solid fa-heart"></i>
+                                                    35
+                                                </button>
+                                                <button class="threads-icons icon-reply" type="button">
+                                                    <i class="fa-solid fa-message"></i>
+                                                    Reply
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="threads-list">
+                                    <div class="threads-item">
+                                        <div class="threads-user">
+                                            <div class="threads-user-avatar">MS</div>
+                                            <h4 class="threads-user-name">Mira S</h4>
+                                        </div>
+                                        <div class="threads-header">
+                                            <h4 class="threads-name">Basic guide for first-time users</h4>
+                                        </div>
+                                        <p class="threads-description">I’m new to the platform and looking for a simple explanation of the workflow: compose → schedule → manage. Any official guide or user tips?</p>
+                                        <div class="threads-footer">
+                                            <span class="tag"># guide</span>
+                                            <span>8h ago</span>
+                                            <span class="ms-auto">
+                                                <button class="threads-icons" type="button">
+                                                    <i class="fa-regular fa-bookmark" id="bookmarkIcon"></i>
+                                                </button>
+                                                <button class="threads-icons icon-like" type="button">
+                                                    <i class="fa-solid fa-heart"></i>
+                                                    32
+                                                </button>
+                                                <button class="threads-icons icon-reply" type="button">
+                                                    <i class="fa-solid fa-message"></i>
+                                                    Reply
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="threads-list">
+                                    <div class="threads-item">
+                                        <div class="threads-user">
+                                            <div class="threads-user-avatar">DR</div>
+                                            <h4 class="threads-user-name">Devansh R</h4>
+                                        </div>
+                                        <div class="threads-header">
+                                            <h4 class="threads-name">Issue adding contacts to groups</h4>
+                                        </div>
+                                        <p class="threads-description">I created groups but adding contacts feels inconsistent. Sometimes the changes don’t save. Am I missing a required step?</p>
+                                        <div class="threads-footer">
+                                            <span class="tag"># groups</span>
+                                            <span>11h ago</span>
+                                            <span class="ms-auto">
+                                                <button class="threads-icons" type="button">
+                                                    <i class="fa-regular fa-bookmark" id="bookmarkIcon"></i>
+                                                </button>
+                                                <button class="threads-icons icon-like" type="button">
+                                                    <i class="fa-solid fa-heart"></i>
+                                                    16
+                                                </button>
+                                                <button class="threads-icons icon-reply" type="button">
+                                                    <i class="fa-solid fa-message"></i>
+                                                    Reply
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="threads-list">
+                                    <div class="threads-item">
+                                        <div class="threads-user">
+                                            <div class="threads-user-avatar">ST</div>
+                                            <h4 class="threads-user-name">Sana T</h4>
+                                        </div>
+                                        <div class="threads-header">
+                                            <h4 class="threads-name">Can scheduled emails be edited after saving</h4>
+                                        </div>
+                                        <p class="threads-description">If I schedule an email and later need to change the content or time, is there an edit option or do I delete and recreate it?</p>
+                                        <div class="threads-footer">
+                                            <span class="tag"># schedule</span>
+                                            <span class="tag"># guide</span>
+                                            <span>14h ago</span>
+                                            <span class="ms-auto">
+                                                <button class="threads-icons" type="button">
+                                                    <i class="fa-regular fa-bookmark" id="bookmarkIcon"></i>
+                                                </button>
+                                                <button class="threads-icons icon-like" type="button">
+                                                    <i class="fa-solid fa-heart"></i>
+                                                    14
+                                                </button>
+                                                <button class="threads-icons icon-reply" type="button">
+                                                    <i class="fa-solid fa-message"></i>
+                                                    Reply
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-3">
+                            <button class="thread-new btn-primary">New Post</button>
+                            <br>
+                            <!-- REUSING THREADS CLASSES HERE -->
+                            <section class="content-section">
+                                <div class="threads-section-header">
+                                    <h2 class="section-title">Active topics</h2>
+                                </div>
+                                <div class="threads-item">
+                                    <div class="threads-tag-stats">
+                                        <span class="tag"># schedule</span>
+                                        <span class="ms-auto">16</span>
+                                    </div>
+                                </div>
+                                <div class="threads-item">
+                                    <div class="threads-tag-stats">
+                                        <span class="tag"># compose</span>
+                                        <span class="ms-auto">14</span>
+                                    </div>
+                                </div>
+                                <div class="threads-item">
+                                    <div class="threads-tag-stats">
+                                        <span class="tag"># guide</span>
+                                        <span class="ms-auto">10</span>
+                                    </div>
+                                </div>
+                                <div class="threads-item">
+                                    <div class="threads-tag-stats">
+                                        <span class="tag"># groups</span>
+                                        <span class="ms-auto">9</span>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'dashboard_script.js' %}"></script>
+    <script src="{% static 'dashboard.js' %}"></script>
 </body>
 </html>

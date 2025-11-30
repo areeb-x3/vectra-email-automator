@@ -8,6 +8,9 @@ def home(request):
     return render(request, "home.html")
 
 def login_user(request):
+    if request.user.is_authenticated:
+        return redirect("/dashboard")
+
     if request.method == "POST":
         email = request.POST.get("loginEMail")
         password = request.POST.get("loginPassword")
