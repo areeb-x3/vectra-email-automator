@@ -968,6 +968,39 @@ html, body {
     gap: 10px;
 }
 
+/* ==================== HISTORY LIST ==================== */
+.history-item {
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.history-header {
+    display: grid;
+    grid-template-columns: 200px 1fr 150px;
+    column-gap: 20px;
+    align-items: center;
+}
+
+.history-group {
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.history-subject {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.history-date {
+    width: 150px;
+    text-align: right;
+    white-space: nowrap;
+}
+
 /* ==================== THREADS LIST ==================== */
 .threads-section-header {
     display: flex;
@@ -1089,54 +1122,54 @@ html, body {
     color: var(--gray-500);
 }
 
-/* ==================== PROJECT LIST ==================== */
-.project-list {
+/* ==================== SCHEDULE VIEW ==================== */
+.schedule-list {
     border: 1px solid var(--gray-200);
     border-radius: var(--radius-lg);
     overflow: hidden;
 }
 
-.project-item {
+.schedule-item {
     padding: var(--spacing-lg);
     border-bottom: 1px solid var(--gray-200);
     transition: all var(--transition-fast);
 }
 
-.project-item:last-child {
+.schedule-item:last-child {
     border-bottom: none;
 }
 
-.project-item:hover {
+.schedule-item:hover {
     background-color: rgba(0, 0, 0, 0.02);
 }
 
-.project-header {
+.schedule-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: var(--spacing-md);
 }
 
-.project-name {
+.schedule-name {
     font-weight: 600;
     color: var(--gray-900);
     margin: 0;
 }
 
-.project-description {
+.schedule-description {
     font-size: 0.875rem;
     color: var(--gray-600);
     margin-bottom: var(--spacing-md);
 }
 
-.project-progress {
+.schedule-progress {
     display: flex;
     align-items: center;
     gap: var(--spacing-md);
     margin-bottom: var(--spacing-md);
 }
 
-.progress-bar-wrapper {
+.schedule-bar-wrapper {
     flex: 1;
     height: 0.5rem;
     background-color: var(--gray-200);

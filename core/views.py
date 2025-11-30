@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
-from .models import Group, GroupEmail
+from .models import Group, GroupEmail, SentMail
 
 def home(request):
     return render(request, "home.html")
@@ -74,11 +74,15 @@ def dashboard(request):
     full_name = request.user.first_name + request.user.last_name
 
     groups = Group.objects.filter(user=request.user).prefetch_related('emails')
+    history = SentMail.objects.filter(
+        sender=request.user
+    ).select_related('group').order_by('-created_at')
 
     return render(request, "dashboard.html", {
         "full_name": full_name,
         "avatar": avatar,
-        "groups": groups
+        "groups": groups,
+        "history": history
     })
 
 # Group Popup forms
@@ -138,5 +142,11 @@ def send_bulk_mail(request):
         recipients = list(group.emails.values_list("email", flat=True))
 
         bulk_sender.send_bulk_emails(recipients, subject, body)
-        # Redirect back to groups page or wherever
-        return redirect("core:dashboard")  # change to your url name
+        SentMail.objects.create(
+            group=group,
+            subject=subject,
+            body=body,
+            recipients=", ".join(recipients),
+            sender = request.user
+        )
+        return redirect("core:dashboard")

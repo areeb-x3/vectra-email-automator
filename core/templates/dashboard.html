@@ -113,20 +113,160 @@
 
             <!-- Content Area -->
             <main class="content-area">
-                <!-- Home Section -->
-                <div class="tab-content active" id="tab-home"> Home </div>
-                <!-- Scheduled Section -->
-                <div class="tab-content" id="tab-scheduled">
+                <!-- Home Section (Some Sections are static and dynamic) -->
+                <div class="tab-content active" id="tab-home">
+                    <!-- Hero Banner -->
+                    <section class="hero-banner mb-5">
+                        <div class="hero-content">
+                            <span class="badge badge-light mb-3">Premium</span>
+                            <h2 class="hero-title">Vectra Premium</h2>
+                            <p class="hero-description">Vectra Premium combines expanded email delivery, long-term scheduling, and generous storage into one powerful package. It supports large campaigns, organized planning, and secure data management with dependable, high-performance workflow integration.</p>
+                            <div class="hero-actions">
+                                <button class="btn btn-light rounded-pill">Upgrade Plan</button>
+                                <button class="btn btn-outline-light rounded-pill" id="notIntrested">Not Intrested</button>
+                            </div>
+                        </div>
+                        <div class="hero-visual d-none d-lg-block">
+                            <div class="rotating-circles">
+                                <div class="circle circle-1"></div>
+                                <div class="circle circle-2"></div>
+                                <div class="circle circle-3"></div>
+                                <div class="circle circle-4"></div>
+                            </div>
+                        </div>
+                    </section>
                     <div class="row g-4 mb-5">
-                        <div class="col">
+                        <div class="col-lg-6">
                             <section class="content-section">
                                 <div class="threads-section-header">
-                                    <h2 class="section-title">Scheduled</h2>
+                                    <h2 class="section-title">Active Schedules</h2>
+                                    <button class="btn btn-ghost">View All</button>
+                                </div>
+                                <div class="schedule-list">
+                                    <div class="schedule-item">
+                                        <div class="schedule-header">
+                                            <h4 class="schedule-name">Weekly Digest</h4>
+                                            <span class="badge badge-outline">Every Monday</span>
+                                        </div>
+                                        <p class="schedule-description">Incidents around the world.</p>
+                                        <div class="project-meta">
+                                            <span><i class="fas fa-users me-1"></i>4 Recipients</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="schedule-item">
+                                        <div class="schedule-header">
+                                            <h4 class="schedule-name">Announcement</h4>
+                                            <span class="badge badge-outline">On July 30</span>
+                                        </div>
+                                        <p class="schedule-description">Announcement about new employee joining the office.</p>
+                                        <div class="project-meta">
+                                            <span><i class="fas fa-users me-1"></i>2 Groups</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-6">
+                            <section class="content-section">
+                                <div class="groups-section-header">
+                                    <h2 class="section-title">Groups</h2>
+                                    <button class="btn btn-ghost">View All</button>
+                                </div>
+                                <div class="groups-list">
+                                    {% for group in groups|slice:":2" %}
+                                    <div class="groups-item">
+                                        <div class="groups-header">
+                                            <h4 class="groups-name">{{ group.name }}</h4>
+                                        
+                                            <div class="actions">
+                                                <span class="recipient-count">
+                                                    <i class="fa-solid fa-user"></i>
+                                                    {{ group.emails.count }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    
+                                        <div class="groups-footer">
+                                            <p class="description">{{ group.description }}</p>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <!-- Scheduled Section (Static)-->
+                <div class="tab-content" id="tab-scheduled">
+                    <div class="row g-4 mb-5">
+                        <div class="col-lg-9">
+                            <section class="content-section">
+                                <div class="threads-section-header">
+                                    <h2 class="section-title">Active Schedules</h2>
                                     <div>
                                         <button class="threads-icons">
                                             <i class="fa-solid fa-magnifying-glass"></i>
                                             Search
                                         </button>
+                                    </div>
+                                </div>
+                                <div class="schedule-list">
+                                    <div class="schedule-item">
+                                        <div class="schedule-header">
+                                            <h4 class="schedule-name">Weekly Digest</h4>
+                                            <span class="badge badge-outline">Every Monday</span>
+                                        </div>
+                                        <p class="schedule-description">Incidents around the world.</p>
+                                        <div class="project-meta">
+                                            <span><i class="fas fa-users me-1"></i>4 Recipients</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="schedule-item">
+                                        <div class="schedule-header">
+                                            <h4 class="schedule-name">Announcement</h4>
+                                            <span class="badge badge-outline">On July 30</span>
+                                        </div>
+                                        <p class="schedule-description">Announcement about new employee joining the office.</p>
+                                        <div class="project-meta">
+                                            <span><i class="fas fa-users me-1"></i>2 Groups</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="content-section">
+                                <div class="threads-section-header">
+                                    <h2 class="section-title">Inactive Schedules</h2>
+                                    <div>
+                                        <button class="threads-icons">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="schedule-item">
+                                    <div class="schedule-header">
+                                        <h4 class="schedule-name">Boss's Birthday</h4>
+                                        <span class="badge badge-outline">May 25</span>
+                                    </div>
+                                    <p class="schedule-description">Invitations to Boss's Birthday (surprise) party</p>
+                                    <div class="project-meta">
+                                        <span><i class="fas fa-users me-1"></i>3 Groups</span>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-3">
+                            <!-- Side Banner -->
+                             <section class="hero-banner mb-5">
+                                <div class="hero-content">
+                                    <span class="badge badge-light mb-3">Premium</span>
+                                    <h2 class="hero-title">Schedule Mails Upto 3 Years</h2>
+                                    <p class="hero-description">Plan long-term communication with Vectra Premium’s extended scheduling window. Set campaigns months in advance, maintain consistent outreach, and automate delivery timelines without manual oversight or repeated setup.</p>
+                                    <div class="hero-actions">
+                                        <button class="btn btn-light rounded-pill">Upgrade Plan</button>
                                     </div>
                                 </div>
                             </section>
@@ -218,15 +358,33 @@
                 <!-- History Section -->
                 <div class="tab-content" id="tab-history">
                     <div class="row g-4 mb-5">
-                        <div class="col">
+                        <div class="col-lg-9">
                             <section class="content-section">
                                 <div class="threads-section-header">
                                     <h2 class="section-title">History</h2>
-                                    <div>
-                                        <button class="threads-icons">
-                                            <i class="fa-solid fa-magnifying-glass"></i>
-                                            Search
-                                        </button>
+                                </div>
+                                <div class="history-list">
+                                    {% for mail in history %}
+                                        <div class="history-item">
+                                            <div class="history-header">
+                                                <span class="history-group">To: {{ mail.group.name }}</span>
+                                                <span class="history-subject">{{ mail.subject }}</span>
+                                                <span class="history-date">{{ mail.created_at|date:"Y-m-d H:i" }}</span>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-lg-3">
+                            <!-- Side Banner -->
+                             <section class="hero-banner mb-5">
+                                <div class="hero-content">
+                                    <span class="badge badge-light mb-3">Premium</span>
+                                    <h2 class="hero-title">Get Upto 1TB of Storage</h2>
+                                    <p class="hero-description">Expand your workspace with Vectra Premium’s enhanced storage capacity. Store archives, attachments, and campaign data securely while maintaining fast access and seamless performance for long-term productivity across large projects.</p>
+                                    <div class="hero-actions">
+                                        <button class="btn btn-light rounded-pill">Upgrade Plan</button>
                                     </div>
                                 </div>
                             </section>
