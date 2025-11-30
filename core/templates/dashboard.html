@@ -138,7 +138,7 @@
                     <div class="row g-4 mb-5">
                         <div class="col-lg-9">
                             <section class="content-section">
-                                <div class="threads-section-header">
+                                <div class="groups-section-header">
                                     <h2 class="section-title">Groups</h2>
                                     <div>
                                         <button class="btn btn-sec btn-secondary">
@@ -169,8 +169,15 @@
                                             </div>
                                         </div>
                                     
-                                        <p class="description">{{ group.description }}</p>
-                                        
+                                        <div class="groups-footer">
+                                            <p class="description">{{ group.description }}</p>
+                                            <div class="ms-auto">
+                                                <button class="btn btn-sec btn-secondary">
+                                                    <i class="fa-solid fa-pencil me-2"></i>
+                                                    Compose
+                                                </button>
+                                            </div>
+                                        </div>
 
                                         <!-- Hidden by default -->
                                         <div id="recipients-{{ group.id }}" class="groups-recipients hidden">
