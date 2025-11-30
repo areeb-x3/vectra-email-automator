@@ -18,4 +18,7 @@ urlpatterns = [
     # Group URLs
     path("create-group/", views.create_group, name="create_group"),
     path("delete-group/<int:group_id>/", views.delete_group, name="delete_group"),
+
+    # Compose URLs
+    path("send-bulk-mail/", views.send_bulk_mail, name="send_bulk_mail"),
 ]

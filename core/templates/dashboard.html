@@ -172,7 +172,8 @@
                                         <div class="groups-footer">
                                             <p class="description">{{ group.description }}</p>
                                             <div class="ms-auto">
-                                                <button class="btn btn-sec btn-secondary">
+                                                <button class="btn btn-sec btn-secondary" type="button"
+                                                    onclick="openComposePopup('{{ group.id }}', '{{ group.name|escapejs }}')">
                                                     <i class="fa-solid fa-pencil me-2"></i>
                                                     Compose
                                                 </button>
@@ -196,6 +197,7 @@
                                         </div>
                                     </div>
                                     {% endfor %}
+                                </div>
                             </section>
                         </div>
                     </div>
@@ -611,6 +613,33 @@
                 <div class="actions">
                     <button id="closePopup" class="btn btn-secondary" type="button">Close</button>
                     <button class="btn btn-primary" type="submit">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add New Compose Popup -->
+    <div id="composePopup" class="popup">
+        <div class="popup-content">
+            <h2 class="section-title">Compose</h2>
+
+            <!-- Optional: show which group you're sending to -->
+            <p id="compose-group-label"></p>
+
+            <form method="POST" action="{% url 'core:send_bulk_mail' %}">
+                {% csrf_token %}
+
+                <input type="hidden" name="group_id" id="compose-group-id">
+
+                <label>Subject</label>
+                <input type="text" class="input-box" name="subject" required>
+
+                <label>Body</label>
+                <textarea class="input-box large-box" name="body" required></textarea>
+
+                <div class="actions">
+                    <button id="composeClosePopup" class="btn btn-secondary" type="button">Close</button>
+                    <button class="btn btn-primary" type="submit">Send</button>
                 </div>
             </form>
         </div>

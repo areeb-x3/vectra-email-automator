@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect
+from core.bulk_sender import bulk_sender 
+
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -123,3 +125,18 @@ def delete_group(request, group_id):
     group.delete()
     messages.success(request, "Group deleted.")
     return redirect("core:dashboard")
+
+# Compose Mail For Group
+@login_required
+def send_bulk_mail(request):
+    if request.method == "POST":
+        subject = request.POST.get("subject")
+        body = request.POST.get("body")
+        group_id = request.POST.get("group_id")
+
+        group = get_object_or_404(Group, pk=group_id)
+        recipients = list(group.emails.values_list("email", flat=True))
+
+        bulk_sender.send_bulk_emails(recipients, subject, body)
+        # Redirect back to groups page or wherever
+        return redirect("core:dashboard")  # change to your url name
