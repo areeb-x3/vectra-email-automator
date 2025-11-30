@@ -74,7 +74,9 @@
                 <!-- Profile Popup -->
                 <div class="profile-popup" id="profilePopup">
                     <div class="popup-actions">
+                        <button class="btn btn-sm btn-sec btn-secondary w-100 mb-2">Upgrade Plan</button>
                         <button class="btn btn-sm btn-sec btn-secondary w-100 mb-2">Account Settings</button>
+                        <button class="btn btn-sm btn-sec btn-secondary w-100 mb-2">Help</button>
                         <form action="/logout/" method="POST" class="w-100">
                             {% csrf_token %}
                             <button type="submit" class="btn btn-sm btn-danger w-100"> Logout</button>
@@ -111,10 +113,104 @@
 
             <!-- Content Area -->
             <main class="content-area">
+                <!-- Home Section -->
                 <div class="tab-content active" id="tab-home"> Home </div>
-                <div class="tab-content" id="tab-scheduled"> Scheduled </div>
-                <div class="tab-content" id="tab-groups"> Groups </div>
-                <div class="tab-content" id="tab-history"> History </div>
+                <!-- Scheduled Section -->
+                <div class="tab-content" id="tab-scheduled">
+                    <div class="row g-4 mb-5">
+                        <div class="col">
+                            <section class="content-section">
+                                <div class="threads-section-header">
+                                    <h2 class="section-title">Scheduled</h2>
+                                    <div>
+                                        <button class="threads-icons">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <!-- Groups Section -->
+                <div class="tab-content" id="tab-groups">
+                    <div class="row g-4 mb-5">
+                        <div class="col-lg-9">
+                            <section class="content-section">
+                                <div class="threads-section-header">
+                                    <h2 class="section-title">Groups</h2>
+                                    <div>
+                                        <button class="btn btn-sec btn-secondary">
+                                            <i class="fa-solid fa-magnifying-glass me-2"></i>
+                                            Search
+                                        </button>
+                                        <button id="createNewBtn" class="btn btn-pri btn-primary">
+                                            <i class="fa-solid fa-pencil me-2"></i>
+                                            Create New 
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="groups-list">
+                                    {% for group in groups %}
+                                    <div class="groups-item">
+                                        <div class="groups-header">
+                                            <h4 class="groups-name">{{ group.name }}</h4>
+                                        
+                                            <div class="actions">
+                                                <span class="recipient-count">
+                                                    <i class="fa-solid fa-user"></i>
+                                                    {{ group.emails.count }}
+                                                </span>
+                                            
+                                                <button class="dropdown-btn me-2" onclick="toggleRecipients('{{ group.id }}')">
+                                                    <i class="fa-solid fa-angle-down"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    
+                                        <p class="description">{{ group.description }}</p>
+                                        
+
+                                        <!-- Hidden by default -->
+                                        <div id="recipients-{{ group.id }}" class="groups-recipients hidden">
+                                            <!-- Email Addresses -->
+                                            <strong>Recipients:</strong>
+                                            <div class="recipient-list">
+                                                {% for email in group.emails.all %}
+                                                    <span class="recipient">{{ email.email }}</span>
+                                                {% endfor %}
+                                            </div>
+                                            <!-- Delete Group -->
+                                            <form method="POST" action="{% url 'core:delete_group' group.id %}">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-sm btn-danger">Delete Group</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <!-- History Section -->
+                <div class="tab-content" id="tab-history">
+                    <div class="row g-4 mb-5">
+                        <div class="col">
+                            <section class="content-section">
+                                <div class="threads-section-header">
+                                    <h2 class="section-title">History</h2>
+                                    <div>
+                                        <button class="threads-icons">
+                                            <i class="fa-solid fa-magnifying-glass"></i>
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
                 
                 <!-- Guides Section (Static) -->
                 <div class="tab-content" id="tab-guides">
@@ -488,7 +584,38 @@
             </main>
         </div>
     </div>
+    <!-- Add New Group Popup -->
+    <div id="groupPopup" class="popup">
+        <div class="popup-content">
+            <h2 class="section-title">Groups</h2>
 
+            <form method="POST" action="{% url 'core:create_group' %}">
+                {% csrf_token %}
+
+                <label>Name</label>
+                <input type="text" class="input-box" name="name" required>
+
+                <label>Description</label>
+                <input type="text" class="input-box" name="description">
+
+                <label>Recipients</label>
+                <textarea class="input-box large-box" name="recipients" placeholder="one@gmail.com, two@gmail.com"></textarea>
+
+                <div class="actions">
+                    <button id="closePopup" class="btn btn-secondary" type="button">Close</button>
+                    <button class="btn btn-primary" type="submit">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Django Messages -->
+    {% if messages %}
+    <script>
+        {% for message in messages %}
+            alert("{{ message|escapejs }}");
+        {% endfor %}
+    </script>
+    {% endif %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'dashboard.js' %}"></script>
 </body>

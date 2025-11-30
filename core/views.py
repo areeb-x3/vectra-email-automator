@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db import IntegrityError
+from .models import Group, GroupEmail
 
 def home(request):
     return render(request, "home.html")
@@ -68,4 +70,56 @@ def signup_user(request):
 def dashboard(request):
     avatar = request.user.first_name[0].upper() + request.user.last_name[0].upper()
     full_name = request.user.first_name + request.user.last_name
-    return render(request, "dashboard.html", {"full_name": full_name, "avatar": avatar})
+
+    groups = Group.objects.filter(user=request.user).prefetch_related('emails')
+
+    return render(request, "dashboard.html", {
+        "full_name": full_name,
+        "avatar": avatar,
+        "groups": groups
+    })
+
+# Group Popup forms
+@login_required
+def create_group(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        description = request.POST.get("description")
+        recipients_raw = request.POST.get("recipients")
+
+        if Group.objects.filter(user=request.user, name=name).exists():
+            messages.error(request, "A group with that name already exists.")
+            return redirect("core:dashboard")
+
+        group = Group.objects.create(
+            user=request.user,
+            name=name,
+            description=description
+        )
+
+        if recipients_raw:
+            emails = [e.strip() for e in recipients_raw.split(",") if e.strip()]
+        
+            for email in emails:
+                if "@" in email:
+                    parts = email.split("@")
+                    if len(parts) == 2:
+                        local, domain = parts
+                        if local and domain and "." in domain and " " not in email:
+                            GroupEmail.objects.create(group=group, email=email)
+        
+        messages.success(request, "Group created successfully.")
+        return redirect("core:dashboard")
+
+# Delete Group
+@login_required
+def delete_group(request, group_id):
+    group = Group.objects.filter(id=group_id, user=request.user).first()
+
+    if not group:
+        messages.error(request, "Group not found.")
+        return redirect("core:dashboard")
+
+    group.delete()
+    messages.success(request, "Group deleted.")
+    return redirect("core:dashboard")
