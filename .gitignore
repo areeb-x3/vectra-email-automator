@@ -1,6 +1,7 @@
 credential.json
 token.json
 db.sqlite3
+*.py[cod]
 temp/
 __pycache__/
 core/__pycache__/
