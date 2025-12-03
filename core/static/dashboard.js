@@ -20,6 +20,29 @@ navItems.forEach(item => {
     });
 });
 
+// View All Button Implementation
+const externalButtons = document.querySelectorAll('.view-all');
+
+externalButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-nav');
+
+        // Switch sections only
+        sections.forEach(sec => sec.classList.remove('active'));
+        const targetEl = document.getElementById(target);
+        if (targetEl) {
+            targetEl.classList.add('active');
+        }
+
+        // Update sidebar highlight
+        const matchingSidebarItem = document.querySelector(`.nav-item[data-nav="${target}"]`);
+        if (matchingSidebarItem) {
+            navItems.forEach(i => i.classList.remove('active'));
+            matchingSidebarItem.classList.add('active');
+        }
+    });
+});
+
 // Handle Pop-up menu
 document.addEventListener("DOMContentLoaded", () => {
     const trigger = document.getElementById("profileTrigger");
@@ -80,7 +103,7 @@ function openComposePopup(groupId, groupName) {
 
     // Optional: show group name in the popup
     document.getElementById('compose-group-label').textContent =
-        'Sending to group: ' + groupName;
+        'Sending to: ' + groupName;
 
     // Show popup
     document.getElementById('composePopup').style.display = 'flex';

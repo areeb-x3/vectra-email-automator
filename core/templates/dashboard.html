@@ -26,10 +26,6 @@
                 </div>
             </div>
 
-            <div class="search-box">
-                <input type="search" placeholder="Search..." class="form-control">
-            </div>
-
             <nav class="sidebar-nav">
                 <button class="nav-item active" data-nav="tab-home">
                     <i class="fas fa-home"></i>
@@ -96,8 +92,11 @@
                 <button class="sidebar-toggle d-none d-md-inline-flex" id="sidebarToggle">
                     <i class="fas fa-panel-left"></i>
                 </button>
-                <h1 class="header-title"></h1>
+                <h1 class="header-title">Dashboard</h1>
                 <div class="header-actions">
+                    <div class="search-box">
+                        <input type="search" placeholder="Search..." class="form-control">
+                    </div>
                     <button class="header-btn" title="Cloud Storage">
                         <i class="fas fa-cloud"></i>
                     </button>
@@ -140,7 +139,7 @@
                             <section class="content-section">
                                 <div class="threads-section-header">
                                     <h2 class="section-title">Active Schedules</h2>
-                                    <button class="btn btn-ghost">View All</button>
+                                    <button class="btn btn-ghost view-all" data-nav="tab-scheduled">View All</button>
                                 </div>
                                 <div class="schedule-list">
                                     <div class="schedule-item">
@@ -171,10 +170,10 @@
                             <section class="content-section">
                                 <div class="groups-section-header">
                                     <h2 class="section-title">Groups</h2>
-                                    <button class="btn btn-ghost">View All</button>
+                                    <button class="btn btn-ghost view-all" data-nav="tab-groups">View All</button>
                                 </div>
                                 <div class="groups-list">
-                                    {% for group in groups|slice:":2" %}
+                                    {% for group in groups|slice:":5" %}
                                     <div class="groups-item">
                                         <div class="groups-header">
                                             <h4 class="groups-name">{{ group.name }}</h4>
@@ -367,9 +366,9 @@
                                     {% for mail in history %}
                                         <div class="history-item">
                                             <div class="history-header">
-                                                <span class="history-group">To: {{ mail.group.name }}</span>
+                                                <span class="history-group"><b>To: {{ mail.group.name }}</b></span>
                                                 <span class="history-subject">{{ mail.subject }}</span>
-                                                <span class="history-date">{{ mail.created_at|date:"Y-m-d H:i" }}</span>
+                                                <span class="history-date"><b>{{ mail.created_at|date:"Y-m-d H:i" }}</b></span>
                                             </div>
                                         </div>
                                     {% endfor %}
@@ -767,18 +766,19 @@
     <!-- Add New Group Popup -->
     <div id="groupPopup" class="popup">
         <div class="popup-content">
-            <h2 class="section-title">Groups</h2>
-
+            <h2 class="section-title">Create Group</h2>
+            <br><br>
+            
             <form method="POST" action="{% url 'core:create_group' %}">
                 {% csrf_token %}
 
-                <label>Name</label>
+                <label class="input-label">Name</label>
                 <input type="text" class="input-box" name="name" required>
 
-                <label>Description</label>
+                <label class="input-label">Description</label>
                 <input type="text" class="input-box" name="description">
 
-                <label>Recipients</label>
+                <label class="input-label">Recipients</label>
                 <textarea class="input-box large-box" name="recipients" placeholder="one@gmail.com, two@gmail.com"></textarea>
 
                 <div class="actions">
@@ -789,23 +789,25 @@
         </div>
     </div>
 
-    <!-- Add New Compose Popup -->
+    <!-- Add Compose Popup -->
     <div id="composePopup" class="popup">
         <div class="popup-content">
             <h2 class="section-title">Compose</h2>
+            <br>
+            <br>
 
             <!-- Optional: show which group you're sending to -->
-            <p id="compose-group-label"></p>
+            <i><b><p id="compose-group-label"></p></b></i>
 
             <form method="POST" action="{% url 'core:send_bulk_mail' %}">
                 {% csrf_token %}
 
                 <input type="hidden" name="group_id" id="compose-group-id">
 
-                <label>Subject</label>
+                <label class="input-label">Subject</label>
                 <input type="text" class="input-box" name="subject" required>
 
-                <label>Body</label>
+                <label class="input-label">Body</label>
                 <textarea class="input-box large-box" name="body" required></textarea>
 
                 <div class="actions">
