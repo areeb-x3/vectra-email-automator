@@ -15,8 +15,13 @@ urlpatterns = [
     path("logout/", views.logout_user, name="logout"),
     path("signup/", views.signup_user, name="signup"),
     
+    # Organisation URLs
+    path("create-organisation/", views.create_organisation, name="create_organisation"),
+    path("modify-organisation/", views.modify_organisation, name="modify_organisation"),
+    path("delete-organisation/<int:organisation_id>/", views.delete_organisation, name="delete_organisation"),
     # Group URLs
     path("create-group/", views.create_group, name="create_group"),
+    path("modify-group/", views.modify_group, name="modify_group"),
     path("delete-group/<int:group_id>/", views.delete_group, name="delete_group"),
 
     # Compose URLs

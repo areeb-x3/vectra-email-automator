@@ -463,16 +463,6 @@ html, body {
     background-color: rgba(0, 105, 146, 0.1);
 }
 
-/* .tab-btn.active::after {
-    content: '';
-    position: absolute;
-    bottom: -var(--spacing-lg);
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: var(--primary-accent);
-} */
-
 .tabs-actions {
     display: flex;
     gap: var(--spacing-md);
@@ -507,6 +497,7 @@ html, body {
 
 .btn-secondary:hover {
     background-color: var(--gray-300);
+    color: var(--gray-900);
 }
 
 .btn-outline-secondary {
@@ -855,8 +846,8 @@ html, body {
     color: var(--gray-500);
     margin: 0.25rem 0 0;
 }
-/* ==================== GROUPS VIEW ==================== */
-.groups-section-header {
+/* ==================== ORGANISATION VIEW ==================== */
+.organisation-section-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -864,31 +855,33 @@ html, body {
     border-bottom: 3px solid var(--gray-300);
 }
 
-.groups-list {
+.organisation-list {
     overflow: hidden;
 }
 
-.groups-item {
+.organisation-item {
     border-bottom: 1px solid var(--gray-200);
     transition: all var(--transition-fast);
 }
 
-.groups-item:last-child {
+.organisation-item:last-child {
     border-bottom: none;
 }
 
-.groups-item:hover {
+.organisation-item:hover {
     background-color: rgba(0, 0, 0, 0.02);
 }
 
-.groups-header {
+.organisation-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding-top: 1rem;
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
 }
 
-.groups-name {
+.organisation-name {
     font-weight: 600;
     font-size: 1.25rem;
     color: var(--gray-900);
@@ -907,14 +900,21 @@ html, body {
     background: none;
 }
 
-.groups-footer {
+.organisation-footer {
     display: flex;
     gap: var(--spacing-lg);
-    padding: var(--spacing-lg);
+    padding: 0.5rem var(--spacing-lg);
 }
 
-.groups-recipients {
+.organisation-recipients {
     padding-bottom: 1rem;
+}
+
+.organisation-buttons {
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+    padding-bottom: 1rem;
+    gap: 10px;
 }
 
 .recipient-list {
@@ -931,7 +931,7 @@ html, body {
     align-items: center;
     margin-bottom: 10px;
 }
-/* ==================== GROUPS AND COMPOSE POPUP ==================== */
+/* ==================== ORGANISATION AND COMPOSE POPUP ==================== */
 .popup {
     display: none;
     position: fixed;
@@ -955,6 +955,15 @@ html, body {
     color: #2d79c7;
 }
 
+.popup-content-compose {
+    width: 50%;
+}
+
+.popup-content-edit {
+    width: 50%;
+    height: 70%;
+}
+
 .input-label {
     padding-bottom: var(--spacing-sm);
 }
@@ -976,6 +985,80 @@ html, body {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
+}
+
+.custom-file-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.file-name {
+    font-size: 14px;
+    color: #555;
+}
+
+.group-checkbox-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 10px 0;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 6px 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+}
+
+.checkbox-item:hover {
+    background: #f5f5f5;
+}
+
+.organisation-edit-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.organisation-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+    padding: 10px 0;
+}
+
+.organisation-nav-item{
+    display: flex;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 6px 10px;
+    background-color: transparent;
+    border: none;
+    border-radius: var(--spacing-lg);
+}
+
+.organisation-nav-item.active {
+    color: var(--light);
+    background: var(--gray-900);
+}
+
+.organisation-tab-content {
+    display: none;
+    animation: fadeIn var(--transition-base);
+}
+
+.organisation-tab-content.active {
+    display: block;
 }
 
 /* ==================== HISTORY LIST ==================== */

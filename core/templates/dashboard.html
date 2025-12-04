@@ -37,9 +37,9 @@
                     <span>Scheduled</span>
                 </button>
 
-                <button class="nav-item" data-nav="tab-groups">
-                    <i class="fa-solid fa-user-group"></i>
-                    <span>Groups</span>
+                <button class="nav-item" data-nav="tab-organisation">
+                    <i class="fa-solid fa-building"></i>
+                    <span>Organisation</span>
                 </button>
 
                 <button class="nav-item" data-nav="tab-history">
@@ -168,26 +168,26 @@
                         </div>
                         <div class="col-lg-6">
                             <section class="content-section">
-                                <div class="groups-section-header">
-                                    <h2 class="section-title">Groups</h2>
-                                    <button class="btn btn-ghost view-all" data-nav="tab-groups">View All</button>
+                                <div class="organisation-section-header">
+                                    <h2 class="section-title">Organisations</h2>
+                                    <button class="btn btn-ghost view-all" data-nav="tab-organisation">View All</button>
                                 </div>
-                                <div class="groups-list">
-                                    {% for group in groups|slice:":5" %}
-                                    <div class="groups-item">
-                                        <div class="groups-header">
-                                            <h4 class="groups-name">{{ group.name }}</h4>
+                                <div class="organisation-list">
+                                    {% for organisation in organisations|slice:":5" %}
+                                    <div class="organisation-item">
+                                        <div class="organisation-header">
+                                            <h4 class="organisation-name">{{ organisation.name }}</h4>
                                         
                                             <div class="actions">
                                                 <span class="recipient-count">
                                                     <i class="fa-solid fa-user"></i>
-                                                    {{ group.emails.count }}
+                                                    {{ organisation.groups.count }}
                                                 </span>
                                             </div>
                                         </div>
                                     
-                                        <div class="groups-footer">
-                                            <p class="description">{{ group.description }}</p>
+                                        <div class="organisation-footer">
+                                            <p class="description">{{ organisation.description }}</p>
                                         </div>
                                     </div>
                                     {% endfor %}
@@ -272,47 +272,46 @@
                         </div>
                     </div>
                 </div>
-                <!-- Groups Section -->
-                <div class="tab-content" id="tab-groups">
+                <!-- Organisations Section -->
+                <div class="tab-content" id="tab-organisation">
                     <div class="row g-4 mb-5">
                         <div class="col-lg-9">
                             <section class="content-section">
-                                <div class="groups-section-header">
-                                    <h2 class="section-title">Groups</h2>
+                                <div class="organisation-section-header">
+                                    <h2 class="section-title">Organisation</h2>
                                     <div>
                                         <button class="btn btn-sec btn-secondary">
                                             <i class="fa-solid fa-magnifying-glass me-2"></i>
                                             Search
                                         </button>
                                         <button id="createNewBtn" class="btn btn-pri btn-primary">
-                                            <i class="fa-solid fa-pencil me-2"></i>
+                                            <i class="fa-solid fa-plus me-2"></i>
                                             Create New 
                                         </button>
                                     </div>
                                 </div>
-                                <div class="groups-list">
-                                    {% for group in groups %}
-                                    <div class="groups-item">
-                                        <div class="groups-header">
-                                            <h4 class="groups-name">{{ group.name }}</h4>
+                                <div class="organisation-list">
+                                    {% for organisation in organisations %}
+                                    <div class="organisation-item">
+                                        <div class="organisation-header">
+                                            <h4 class="organisation-name">{{ organisation.name }}</h4>
                                         
                                             <div class="actions">
-                                                <span class="recipient-count">
-                                                    <i class="fa-solid fa-user"></i>
-                                                    {{ group.emails.count }}
-                                                </span>
-                                            
-                                                <button class="dropdown-btn me-2" onclick="toggleRecipients('{{ group.id }}')">
+                                                <button class="dropdown-btn me-2" onclick="toggleRecipients('{{ organisation.id }}')">
+                                                    <span class="recipient-count">
+                                                        <i class="fa-solid fa-user-group"></i>
+                                                    {{ organisation.groups.count }}
+                                                    </span>
                                                     <i class="fa-solid fa-angle-down"></i>
                                                 </button>
                                             </div>
                                         </div>
                                     
-                                        <div class="groups-footer">
-                                            <p class="description">{{ group.description }}</p>
+                                        <div class="organisation-footer">
+                                            <p class="description">{{ organisation.description }}</p>
                                             <div class="ms-auto">
                                                 <button class="btn btn-sec btn-secondary" type="button"
-                                                    onclick="openComposePopup('{{ group.id }}', '{{ group.name|escapejs }}')">
+                                                    onclick="openComposePopup('{{ organisation.id }}', '{{ organisations.name|escapejs }}')">
                                                     <i class="fa-solid fa-pencil me-2"></i>
                                                     Compose
                                                 </button>
@@ -320,18 +319,16 @@
                                         </div>
 
                                         <!-- Hidden by default -->
-                                        <div id="recipients-{{ group.id }}" class="groups-recipients hidden">
-                                            <!-- Email Addresses -->
-                                            <strong>Recipients:</strong>
-                                            <div class="recipient-list">
-                                                {% for email in group.emails.all %}
-                                                    <span class="recipient">{{ email.email }}</span>
-                                                {% endfor %}
-                                            </div>
-                                            <!-- Delete Group -->
-                                            <form method="POST" action="{% url 'core:delete_group' group.id %}">
+                                        <div id="recipients-{{ organisation.id }}" class="organisation-buttons hidden">
+                                            <!-- Edit Group -->
+                                            <button class="btn btn-sec btn-secondary" type="button"
+                                                onclick="openEditPopup('{{ organisation.id }}', '{{ organisations.name|escapejs }}')">
+                                                Edit Organisation
+                                            </button>
+                                            <!-- Delete Group  -->
+                                            <form method="POST" action="{% url 'core:delete_organisation' organisation.id %}">
                                                 {% csrf_token %}
-                                                <button type="submit" class="btn btn-sm btn-danger">Delete Group</button>
+                                                <button type="submit" class="btn btn-sm btn-danger">Delete Organisation</button>
                                             </form>
                                         </div>
                                     </div>
@@ -763,13 +760,12 @@
             </main>
         </div>
     </div>
-    <!-- Add New Group Popup -->
-    <div id="groupPopup" class="popup">
+    <!-- Add New Organisation Popup -->
+    <div id="organisationPopup" class="popup">
         <div class="popup-content">
-            <h2 class="section-title">Create Group</h2>
+            <h2 class="section-title">Create Organisation</h2>
             <br><br>
-            
-            <form method="POST" action="{% url 'core:create_group' %}">
+            <form autocomplete="off" method="POST" action="{% url 'core:create_organisation' %}" enctype="multipart/form-data">
                 {% csrf_token %}
 
                 <label class="input-label">Name</label>
@@ -778,9 +774,16 @@
                 <label class="input-label">Description</label>
                 <input type="text" class="input-box" name="description">
 
-                <label class="input-label">Recipients</label>
-                <textarea class="input-box large-box" name="recipients" placeholder="one@gmail.com, two@gmail.com"></textarea>
-
+                <label class="input-label">CSV File (Format: group, email_id)</label>
+                <div class="custom-file-wrapper">
+                    <button type="button" id="fileTrigger" class="btn btn-secondary">
+                        Upload CSV
+                    </button>
+                <span id="fileName" class="file-name">No file chosen</span>
+                </div>
+                
+                <input type="file" id="csvInput" name="csv_file" accept=".csv" style="display: none;">
+                
                 <div class="actions">
                     <button id="closePopup" class="btn btn-secondary" type="button">Close</button>
                     <button class="btn btn-primary" type="submit">Create</button>
@@ -789,30 +792,123 @@
         </div>
     </div>
 
+    <!-- Edit Organisation Popup -->
+     <div id="editOrganisationPopup" class="popup">
+        <div class="popup-content popup-content-edit">
+            <div class="organisation-edit-header">
+            <h2 class="section-title">Edit Organisation</h2>
+                <div>
+                    <button id="createNewGroup" class="btn btn-pri btn-primary" data-nav="tab-add-group">
+                        <i class="fa-solid fa-plus me-2"></i>
+                        Create New 
+                    </button>
+                </div>
+            </div>
+            <br><br>
+            <div class="row g-4 mb-5">
+                <div class="col-lg-4">
+                    <!-- Sidebar showing groups -->
+                    <nav class="organisation-sidebar" id="organisation-sidebar">
+                        <!-- These will be automatically populated by JavaScript -->
+                    </nav>
+                </div>
+                <!-- This create a gap between Sidebar and Edit forms -->
+                <div class="col-lg-1"></div>
+                <div class="col-lg-7">
+                    <div class="organisation-edit-area" id="organisation-edit-area">
+                        <!-- General Info Section (Modify Organisation) -->
+                        <div class="organisation-tab-content active" id="tab-general">    
+                            <form autocomplete="off" method="POST" action="{% url 'core:modify_organisation' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="org_id" id="org-id">
+
+                                <label class="input-label">Name</label>
+                                <input type="text" class="input-box" name="name" id="org-name" required>
+
+                                <label class="input-label">Description</label>
+                                <input type="text" class="input-box" id="org-description" name="description">
+
+                                <div class="actions">
+                                    <button class="btn btn-secondary" type="button" onclick="closeEditPopup()">Close</button>
+                                    <button class="btn btn-primary" type="submit">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Group Info Section (Modify Groups)-->
+                        <div class="organisation-tab-content" id="tab-modify-group">    
+                            <form autocomplete="off" method="POST" action="{% url 'core:modify_group' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="group_id" id="group-id">
+
+                                <label class="input-label">Name</label>
+                                <input type="text" class="input-box" name="name" id="group-name" required>
+
+                                <label class="input-label">Recipients</label>
+                                <textarea class="input-box large-box" name="recipients" id="group-recipients"></textarea>
+
+                                <div class="actions">
+                                    <button class="btn btn-secondary" type="button" onclick="closeEditPopup()">Close</button>
+                                    <button class="btn btn-primary" type="submit">Save</button>
+                                </div>
+                            </form>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-danger">Delete Group</button>
+                            </form>
+                        </div>
+                        <!-- Add New Group -->
+                        <div class="organisation-tab-content" id="tab-add-group">
+                            <form method="POST" action="{% url 'core:create_group' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="org_id" id="create-org-id">
+
+                                <label class="input-label">Name</label>
+                                <input type="text" class="input-box" name="name" required>
+
+                                <label class="input-label">Recipients</label>
+                                <textarea class="input-box large-box" name="recipients" placeholder="one@gmail.com, two@gmail.com"></textarea>
+
+                                <div class="actions">
+                                    <button class="btn btn-secondary" type="button" onclick="closeEditPopup()">Close</button>
+                                    <button class="btn btn-primary" type="submit">Create</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Add Compose Popup -->
     <div id="composePopup" class="popup">
-        <div class="popup-content">
+        <div class="popup-content popup-content-compose">
             <h2 class="section-title">Compose</h2>
             <br>
-            <br>
-
-            <!-- Optional: show which group you're sending to -->
-            <i><b><p id="compose-group-label"></p></b></i>
-
+            
             <form method="POST" action="{% url 'core:send_bulk_mail' %}">
                 {% csrf_token %}
-
-                <input type="hidden" name="group_id" id="compose-group-id">
-
-                <label class="input-label">Subject</label>
-                <input type="text" class="input-box" name="subject" required>
-
-                <label class="input-label">Body</label>
-                <textarea class="input-box large-box" name="body" required></textarea>
-
-                <div class="actions">
-                    <button id="composeClosePopup" class="btn btn-secondary" type="button">Close</button>
-                    <button class="btn btn-primary" type="submit">Send</button>
+                <input type="hidden" name="organisation_id" id="compose-organisation-id">
+                <div class="row g-4 mb-5">
+                    <div class="col-lg-5">
+                        <p><b>Group Selection</b></p>
+                        <div id="groupCheckboxContainer" class="group-checkbox-list"></div>
+                    </div>
+                    <div class="col-lg-7">
+                        <p><b>Email Content</b></p>
+                    
+                        <input type="hidden" name="group_id" id="compose-group-id">
+                    
+                        <label class="input-label">Subject</label>
+                        <input type="text" class="input-box" name="subject" required>
+                    
+                        <label class="input-label">Body</label>
+                        <textarea class="input-box large-box" name="body" required></textarea>
+                    
+                        <div class="actions">
+                            <button id="composeClosePopup" class="btn btn-secondary" type="button">Close</button>
+                            <button class="btn btn-primary" type="submit">Send</button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
@@ -825,6 +921,11 @@
         {% endfor %}
     </script>
     {% endif %}
+    <!-- Getting Organisations data -->
+    <script>
+        const ORG_GROUPS = {{ org_groups|safe }};
+        const ORG_DETAILS = JSON.parse('{{ org_details|escapejs }}');
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{% static 'dashboard.js' %}"></script>
 </body>
