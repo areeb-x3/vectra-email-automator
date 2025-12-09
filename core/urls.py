@@ -10,6 +10,9 @@ urlpatterns = [
     path("home/", views.home, name="home"),
     path("dashboard/", views.dashboard, name="dashboard"),
 
+    # Redirecting to Specific Tab URLs
+    path("dashboard/<str:tab>/", views.dashboard, name="dashboard_tab"),
+    
     # Account URLs
     path("login/", views.login_user, name="login"),
     path("logout/", views.logout_user, name="logout"),
@@ -18,11 +21,12 @@ urlpatterns = [
     # Organisation URLs
     path("create-organisation/", views.create_organisation, name="create_organisation"),
     path("modify-organisation/", views.modify_organisation, name="modify_organisation"),
-    path("delete-organisation/<int:organisation_id>/", views.delete_organisation, name="delete_organisation"),
+    path("delete-organisation/", views.delete_organisation, name="delete_organisation"),
+    
     # Group URLs
     path("create-group/", views.create_group, name="create_group"),
     path("modify-group/", views.modify_group, name="modify_group"),
-    path("delete-group/<int:group_id>/", views.delete_group, name="delete_group"),
+    path("delete-group/", views.delete_group, name="delete_group"),
 
     # Compose URLs
     path("send-bulk-mail/", views.send_bulk_mail, name="send_bulk_mail"),

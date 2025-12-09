@@ -8,6 +8,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db import IntegrityError
+from django.urls import reverse
 from .models import Organisation, Group, GroupEmail, SentMail
 
 def home(request):
@@ -71,7 +72,10 @@ def signup_user(request):
     return render(request, "login.html")
 
 @login_required
-def dashboard(request):
+def dashboard(request, tab="home"):
+    popup = request.GET.get("popup")
+    popup_id = request.GET.get("id")
+    
     avatar = request.user.first_name[0].upper() + request.user.last_name[0].upper()
     full_name = request.user.first_name + " " + request.user.last_name
 
@@ -107,6 +111,9 @@ def dashboard(request):
     }
 
     return render(request, "dashboard.html", {
+        "current_tab": tab,
+        "current_popup": popup,
+        "popup_id": popup_id,
         "full_name": full_name,
         "avatar": avatar,
         "organisations": organisations,
@@ -150,8 +157,7 @@ def create_organisation(request):
                 group_obj, _ = Group.objects.get_or_create(organisation=organisation, name=group_name)
                 GroupEmail.objects.get_or_create(group=group_obj,email=email)
 
-        messages.success(request, "Organisation created successfully.")
-        return redirect("core:dashboard")
+        return redirect("core:dashboard_tab", tab="organisation")
         # I might write comments to explain the code in the future
 
 # Modify Existing Organisation
@@ -165,11 +171,13 @@ def modify_organisation(request):
         org.description = request.POST.get("description", "").strip()
         org.save()
 
-    return redirect("core:dashboard")
+    url = reverse("core:dashboard_tab", kwargs={"tab": "organisation"})
+    url = f"{url}?popup=editOrganisationPopup&id={org_id}"
+    return redirect(url)
 
 # Delete an Organisation
 @login_required
-def delete_organisation(request, organisation_id):
+def delete_organisation(request):
     organisation = get_object_or_404(
         Organisation,
         id=organisation_id,
@@ -178,10 +186,9 @@ def delete_organisation(request, organisation_id):
 
     if request.method == "POST":
         organisation.delete()
-        messages.success(request, "Organisation deleted.")
-        return redirect("core:dashboard")
+        return redirect("core:dashboard_tab", tab="organisation")
 
-    return redirect("core:dashboard")
+    return redirect("core:dashboard_tab", tab="organisation")
 
 # Group Popup forms
 @login_required
@@ -217,13 +224,15 @@ def create_group(request):
                         if local and domain and "." in domain and " " not in email:
                             GroupEmail.objects.create(group=group, email=email)
 
-        messages.success(request, "Group created successfully.")
-        return redirect("core:dashboard")
+        url = reverse("core:dashboard_tab", kwargs={"tab": "organisation"})
+        url = f"{url}?popup=editOrganisationPopup&id={org_id}"
+        return redirect(url)
 
 # Modify Group
 @login_required
 def modify_group(request):
     if request.method == "POST":
+        org_id = request.POST.get("org_id")
         group_id = request.POST.get("group_id")
         name = request.POST.get("name")
         recipients_raw = request.POST.get("recipients", "")
@@ -249,20 +258,25 @@ def modify_group(request):
         ]
         GroupEmail.objects.bulk_create(group_emails)
 
-    return redirect("core:dashboard")
+    url = reverse("core:dashboard_tab", kwargs={"tab": "organisation"})
+    url = f"{url}?popup=editOrganisationPopup&id={org_id}"
+    return redirect(url)
 
 # Delete Group
 @login_required
-def delete_group(request, group_id):
-    group = group = Group.objects.filter(id=group_id, organisation__user=request.user).first()
+def delete_group(request):
+    org_id = request.POST.get("org_id")
+    group_id = request.POST.get("group_id")
+    group = Group.objects.filter(id=group_id, organisation__user=request.user).first()
 
     if not group:
         messages.error(request, "Group not found.")
         return redirect("core:dashboard")
 
     group.delete()
-    messages.success(request, "Group deleted.")
-    return redirect("core:dashboard")
+    url = reverse("core:dashboard_tab", kwargs={"tab": "organisation"})
+    url = f"{url}?popup=editOrganisationPopup&id={org_id}"
+    return redirect(url)
 
 # Compose Mail For Group
 @login_required
@@ -288,4 +302,4 @@ def send_bulk_mail(request):
                 recipients=", ".join(recipients),
                 sender=request.user
             )
-        return redirect("core:dashboard")
+        return redirect("core:dashboard_tab", tab="organisation")

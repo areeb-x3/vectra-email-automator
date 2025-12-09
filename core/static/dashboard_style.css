@@ -961,7 +961,7 @@ html, body {
 
 .popup-content-edit {
     width: 50%;
-    height: 70%;
+    height: 60%;
 }
 
 .input-label {
@@ -1061,10 +1061,23 @@ html, body {
     display: block;
 }
 
+.general-edit-gap {
+    padding-top: 5rem;
+}
+/* ==================== DELETE CONFIRMATION POPUPS ==================== */
+.confirmBtn {
+    display: flex;
+    gap: 1rem;
+}
+
+.confirmBtn button{
+    height: 3rem;
+    width: 50%;
+}
+
 /* ==================== HISTORY LIST ==================== */
 .history-item {
-    padding-top: var(--spacing-lg);
-    padding-bottom: var(--spacing-lg);
+    padding: var(--spacing-lg) var(--spacing-md);
     border-bottom: 1px solid var(--gray-200);
 }
 
