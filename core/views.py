@@ -278,7 +278,7 @@ def delete_group(request):
     url = f"{url}?popup=editOrganisationPopup&id={org_id}"
     return redirect(url)
 
-# Compose Mail For Group
+# Compose Mail For Groups
 @login_required
 def send_bulk_mail(request):
     if request.method == "POST":
@@ -293,7 +293,7 @@ def send_bulk_mail(request):
 
             recipients = list(group.emails.values_list("email", flat=True))
 
-            bulk_sender.send_bulk_emails(recipients, subject, body)
+            bulk_sender.send_bulk_emails(request.user, recipients, subject, body)
 
             SentMail.objects.create(
                 group=group,

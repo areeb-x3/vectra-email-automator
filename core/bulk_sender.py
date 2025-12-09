@@ -1,38 +1,20 @@
 # Importing modules
-import base64
+import base64, os
+from django.contrib.auth.models import User
 from email.mime.text import MIMEText
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
-import os
+from core.token_handler import token_handler
 
 class bulk_sender:
-    # Generate Token
-    @staticmethod
-    def generate_token():
-        flow = InstalledAppFlow.from_client_secrets_file(
-            'credential.json',
-            'https://www.googleapis.com/auth/gmail.send'
-        )
-
-        creds = flow.run_local_server(
-            access_type='offline',
-            prompt='consent'
-        )
-
-        with open('token.json', 'w') as token:
-            token.write(creds.to_json())
-    
-    # Delete Token
-    @staticmethod
-    def delete_token():
-        if os.path.exists("token.json"):
-            os.remove("token.json")
-    
     # Load credentials
     @staticmethod
-    def get_gmail_service():
-        creds = Credentials.from_authorized_user_file("token.json", ["https://www.googleapis.com/auth/gmail.send"])
+    def get_gmail_service(token_data):
+        creds = Credentials.from_authorized_user_info(
+            token_data,
+            scopes = ["https://www.googleapis.com/auth/gmail.send"]
+        )
         service = build("gmail", "v1", credentials=creds)
         return service
 
@@ -53,10 +35,12 @@ class bulk_sender:
     
     # Bulk send
     @classmethod
-    def send_bulk_emails(cls, recipients, subject, body):
-        cls.generate_token()
-        service = cls.get_gmail_service()
-        cls.delete_token()
+    def send_bulk_emails(cls, user, recipients, subject, body):
+        if not hasattr(user, "gmail_token"):
+            token_handler.generate_token(user) 
+
+        token_data = token_handler.fetch_token(user)
+        service = cls.get_gmail_service(token_data)
 
         for r in recipients:
             msg = cls.create_message(r, subject, body)
