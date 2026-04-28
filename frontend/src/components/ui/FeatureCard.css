@@ -1,0 +1,45 @@
+.feature-card {
+  background: var(--bg-surface);
+  padding: 3rem 2.5rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--border);
+  transition: box-shadow 0.3s ease;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  perspective: 1000px;
+}
+
+.feature-card:hover {
+  box-shadow: var(--shadow);
+  border-color: var(--primary-light);
+}
+
+.card-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(124, 58, 237, 0.1) 0%, transparent 80%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.feature-card:hover .card-shine {
+  opacity: 1;
+}
+
+.feature-card h3 {
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+}
+
+.feature-card p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+}
