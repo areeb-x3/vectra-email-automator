@@ -108,7 +108,7 @@
 .avatarMini {
   width: 32px;
   height: 32px;
-  background: #1e293b;
+  background: var(--bg-secondary);
   border-radius: 8px;
   display: flex;
   align-items: center;

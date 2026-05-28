@@ -15,9 +15,7 @@ const Navbar = () => {
   const backgroundColor = useTransform(
     scrollY,
     [0, 100],
-    theme === 'light'
-      ? ["rgba(248, 250, 252, 0)", "rgba(248, 250, 252, 0.9)"]
-      : ["rgba(2, 6, 23, 0)", "rgba(2, 6, 23, 0.9)"]
+    ["rgba(var(--theme-bg-rgb), 0)", "rgba(var(--theme-bg-rgb), 0.9)"]
   );
 
   useEffect(() => {
@@ -51,15 +49,10 @@ const Navbar = () => {
       }}
     >
       <div className="container nav-container">
-        <Link to="/">
-          <motion.div
-            className="logo"
-            whileHover={{ scale: 1.05 }}
-          >
-            <img src={vectraLogo} alt="Vectra" className="logo-icon" />
-            <span className="logo-text">Vectra</span>
-          </motion.div>
-        </Link>
+        <div className="logo">
+          <img src={vectraLogo} alt="Vectra" className="logo-icon" />
+          <span className="logo-text">Vectra</span>
+        </div>
 
         <div className="nav-links">
           {['Features', 'Solutions', 'Pricing'].map((link) => (

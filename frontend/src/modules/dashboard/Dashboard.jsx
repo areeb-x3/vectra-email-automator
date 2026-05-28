@@ -41,16 +41,16 @@ const Dashboard = () => {
         justifyContent: 'center',
         alignItems: 'center',
         height: '100vh',
-        background: 'radial-gradient(circle at top right, #1d1b26 0%, #0d0c10 100%)',
-        color: '#ffffff',
+        background: 'var(--gradient-bg)',
+        color: 'var(--text-primary)',
         fontFamily: 'Outfit, sans-serif'
       }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
           <div style={{
             width: '40px',
             height: '40px',
-            border: '3px solid rgba(255, 255, 255, 0.1)',
-            borderTop: '3px solid #6366f1',
+            border: '3px solid var(--border)',
+            borderTop: '3px solid var(--primary)',
             borderRadius: '50%',
             animation: 'spin 1s linear infinite'
           }} />
@@ -60,7 +60,7 @@ const Dashboard = () => {
               100% { transform: rotate(360deg); }
             }
           `}</style>
-          <span style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.6)', letterSpacing: '0.05em' }}>
+          <span style={{ fontSize: '14px', color: 'var(--text-secondary)', letterSpacing: '0.05em' }}>
             Verifying session...
           </span>
         </div>

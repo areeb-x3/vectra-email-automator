@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Badge from '../ui/Badge';
 import styles from './Header.module.css';
@@ -10,10 +11,12 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.left}>
-        <div className={styles.logo}>
-          <img src={vectraLogo} alt="Vectra" className={styles.logoIcon} />
-          <span className={styles.logoText}>Vectra</span>
-        </div>
+        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <div className={styles.logo} style={{ cursor: 'pointer' }}>
+            <img src={vectraLogo} alt="Vectra" className={styles.logoIcon} />
+            <span className={styles.logoText}>Vectra</span>
+          </div>
+        </Link>
       </div>
 
       <div className={styles.right}>

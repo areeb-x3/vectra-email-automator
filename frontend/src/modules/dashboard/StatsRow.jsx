@@ -3,9 +3,9 @@ import Card from '../ui/Card';
 import styles from './StatsRow.module.css';
 
 const stats = [
-  { label: 'Active Campaigns', value: '12', glowColor: 'rgba(79, 70, 229, 0.5)' },
-  { label: 'Total Sends', value: '1,284', glowColor: 'rgba(124, 58, 237, 0.5)' },
-  { label: 'Open Rate', value: '64.2%', glowColor: 'rgba(6, 182, 212, 0.5)' },
+  { label: 'Active Campaigns', value: '12', glowColor: 'rgba(var(--primary-rgb), 0.5)' },
+  { label: 'Total Sends', value: '1,284', glowColor: 'rgba(var(--primary-purple-rgb), 0.5)' },
+  { label: 'Open Rate', value: '64.2%', glowColor: 'rgba(var(--primary-cyan-rgb), 0.5)' },
 ];
 
 const StatsRow = () => {

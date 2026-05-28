@@ -28,7 +28,7 @@
 .logoIcon {
   width: 32px;
   height: 32px;
-  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-purple) 100%);
   border-radius: 10px;
   display: flex;
   align-items: center;
@@ -36,7 +36,7 @@
   font-weight: 800;
   font-size: 1.15rem;
   color: var(--text-primary);
-  box-shadow: 0 0 15px rgba(79, 70, 229, 0.4);
+  box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.4);
 }
 
 .logoText {

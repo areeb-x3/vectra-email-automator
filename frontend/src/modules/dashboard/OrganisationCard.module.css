@@ -50,7 +50,7 @@
 
 .illustration {
   margin-bottom: 0.25rem;
-  color: #475569;
+  color: var(--text-muted);
   filter: drop-shadow(0 0 15px rgba(var(--theme-glass-rgb), 0.02));
 }
 
@@ -61,7 +61,7 @@
 }
 
 .createBtn {
-  background: linear-gradient(135deg, #4f46e5 0%, var(--primary-cyan) 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-cyan) 100%);
   color: #ffffff;
   padding: 0.85rem 1.75rem;
   border-radius: 12px;
@@ -70,12 +70,12 @@
   margin-top: 0.5rem;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid rgba(var(--theme-glass-rgb), 0.1);
-  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+  box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.3);
 }
 
 .createBtn:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.4);
+  box-shadow: 0 8px 24px rgba(var(--primary-rgb), 0.4);
   filter: brightness(1.1);
 }
 
@@ -86,8 +86,8 @@
 }
 
 .countBadge {
-  background: rgba(139, 92, 246, 0.1);
-  border: 1px solid rgba(139, 92, 246, 0.2);
+  background: rgba(var(--primary-rgb), 0.1);
+  border: 1px solid rgba(var(--primary-rgb), 0.2);
   color: var(--primary-purple);
   font-size: 0.75rem;
   font-weight: 700;

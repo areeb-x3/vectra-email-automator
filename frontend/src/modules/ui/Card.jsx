@@ -6,7 +6,7 @@ const Card = ({
   children, 
   variant = 'standard', 
   interactive = false, 
-  glowColor = 'rgba(79, 70, 229, 0.5)',
+  glowColor = 'rgba(var(--primary-rgb), 0.5)',
   className = '',
   style = {},
   ...props 
