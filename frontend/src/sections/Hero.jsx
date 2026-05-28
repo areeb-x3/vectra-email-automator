@@ -36,13 +36,7 @@ const Hero = () => {
           initial="initial"
           animate="animate"
         >
-          <motion.div
-            variants={itemFadeIn}
-            className="status-pill"
-          >
-            <span className="pulse-dot"></span>
-            System Active & Monitoring
-          </motion.div>
+
           <motion.h1 variants={itemFadeIn}>
             Automate Your <span className="text-gradient">Email Campaigns</span>
           </motion.h1>

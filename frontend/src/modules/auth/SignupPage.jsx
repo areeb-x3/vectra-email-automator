@@ -90,15 +90,9 @@ const SignupPage = () => {
       {/* Background Elements */}
       <div className="auth-background">
         <img src={bgImage} alt="Background" className="bg-image" />
-        <div className="bg-gradient-overlay" />
-        <div className="animated-gradient" />
       </div>
 
-      {/* System Status */}
-      <div className="system-status">
-        <div className="status-dot" />
-        <span>Vectra System Active</span>
-      </div>
+
 
       <AuthCard>
         <div className="auth-header">

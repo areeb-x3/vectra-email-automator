@@ -4,7 +4,7 @@ import AuthCard from './AuthCard';
 import InputField from './InputField';
 import GradientButton from './GradientButton';
 import useForm from '../../hooks/useForm';
-import bgImage from '../../assets/auth-bg.png';
+import bgImage from '../../assets/login.jpeg';
 import { authAPI } from '../../lib/api';
 import './Auth.css';
 
@@ -67,15 +67,9 @@ const LoginPage = () => {
       {/* Background Elements */}
       <div className="auth-background">
         <img src={bgImage} alt="Background" className="bg-image" />
-        <div className="bg-gradient-overlay" />
-        <div className="animated-gradient" />
       </div>
 
-      {/* System Status */}
-      <div className="system-status">
-        <div className="status-dot" />
-        <span>Vectra System Active</span>
-      </div>
+
 
       <AuthCard>
         <div className="auth-header">
