@@ -51,10 +51,8 @@ The project addresses the growing rise of spam and declining email engagement by
 
 ### Frontend
 
-- HTML
-- CSS
-- JavaScript
-- Bootstrap
+- React
+- Tailwind CSS
 
 ### Database
 
