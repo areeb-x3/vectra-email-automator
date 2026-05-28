@@ -18,7 +18,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 70% 30%, rgba(79, 70, 229, 0.4) 0%, rgba(124, 58, 237, 0.1) 40%, var(--bg-surface) 80%);
+  background: radial-gradient(circle at 70% 30%, rgba(var(--primary-rgb), 0.4) 0%, rgba(var(--primary-purple-rgb), 0.1) 40%, var(--bg-surface) 80%);
   z-index: 0;
 }
 
@@ -52,7 +52,7 @@
   font-weight: 600;
   color: var(--primary-cyan);
   margin-bottom: 1rem;
-  border: 1px solid rgba(6, 182, 212, 0.3);
+  border: 1px solid rgba(var(--primary-cyan-rgb), 0.3);
   text-transform: uppercase;
   letter-spacing: 1px;
 }

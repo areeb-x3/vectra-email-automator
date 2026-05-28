@@ -36,7 +36,7 @@
 }
 
 .sortSelect:hover, .sortSelect:focus {
-  border-color: rgba(79, 70, 229, 0.5);
+  border-color: rgba(var(--primary-rgb), 0.5);
   color: var(--text-primary);
 }
 

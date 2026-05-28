@@ -35,8 +35,8 @@
 
 .searchInput:focus {
   background: rgba(var(--theme-glass-rgb), 0.05);
-  border-color: rgba(79, 70, 229, 0.5);
-  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+  border-color: rgba(var(--primary-rgb), 0.5);
+  box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.1);
 }
 
 .filtersRow {

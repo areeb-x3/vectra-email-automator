@@ -28,7 +28,7 @@ export const cardHover = {
 export const buttonHover = {
   hover: {
     scale: 1.03,
-    boxShadow: "0 0 20px rgba(124, 58, 237, 0.5)",
+    boxShadow: "0 0 20px rgba(var(--primary-rgb), 0.5)",
     transition: { duration: 0.2, ease: "easeOut" }
   },
   tap: {

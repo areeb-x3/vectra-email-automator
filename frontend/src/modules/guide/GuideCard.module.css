@@ -19,13 +19,13 @@
 }
 
 .cardWrapper.official:hover {
-  border-color: rgba(79, 70, 229, 0.3);
-  box-shadow: 0 10px 30px -10px rgba(79, 70, 229, 0.15);
+  border-color: rgba(var(--primary-rgb), 0.3);
+  box-shadow: 0 10px 30px -10px rgba(var(--primary-rgb), 0.15);
 }
 
 .cardWrapper.community:hover {
-  border-color: rgba(6, 182, 212, 0.3);
-  box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.15);
+  border-color: rgba(var(--primary-cyan-rgb), 0.3);
+  box-shadow: 0 10px 30px -10px rgba(var(--primary-cyan-rgb), 0.15);
 }
 
 .coverVisual {
@@ -36,11 +36,11 @@
 }
 
 .coverVisual.gradientOfficial {
-  background: linear-gradient(135deg, rgba(79, 70, 229, 0.2), rgba(124, 58, 237, 0.1));
+  background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.2), rgba(var(--primary-purple-rgb), 0.1));
 }
 
 .coverVisual.gradientCommunity {
-  background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(79, 70, 229, 0.1));
+  background: linear-gradient(135deg, rgba(var(--primary-cyan-rgb), 0.2), rgba(var(--primary-rgb), 0.1));
 }
 
 .abstractShape {

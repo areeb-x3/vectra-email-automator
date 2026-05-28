@@ -1,3 +1,15 @@
+@keyframes icon-pulse {
+  0% {
+    box-shadow: 0 4px 10px rgba(var(--theme-shadow-rgb), 0.2);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(var(--primary-rgb), 0.3);
+  }
+  100% {
+    box-shadow: 0 4px 10px rgba(var(--theme-shadow-rgb), 0.2);
+  }
+}
+
 .icon-wrapper {
   width: 56px;
   height: 56px;
@@ -11,4 +23,5 @@
   margin-bottom: 2rem;
   border: 1px solid var(--border);
   box-shadow: 0 4px 10px rgba(var(--theme-shadow-rgb), 0.2);
+  animation: icon-pulse 3s ease-in-out infinite;
 }
