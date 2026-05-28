@@ -1,0 +1,59 @@
+.container {
+  width: 100%;
+}
+
+.input, .textarea {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  color: var(--text-primary);
+  font-size: inherit;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.input:focus, .textarea:focus {
+  border-color: var(--input-focus-border);
+  background: var(--input-bg);
+  box-shadow: 0 0 15px var(--input-focus-glow);
+}
+
+.display {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  width: fit-content;
+}
+
+.display:hover {
+  background: rgba(var(--theme-glass-rgb), 0.05);
+  border-color: rgba(var(--theme-glass-rgb), 0.1);
+}
+
+.value {
+  color: var(--text-primary);
+}
+
+.placeholder {
+  color: var(--input-placeholder);
+  font-style: italic;
+}
+
+.editIcon {
+  color: rgba(var(--theme-glass-rgb), 0.2);
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.display:hover .editIcon {
+  opacity: 1;
+  color: rgba(var(--theme-glass-rgb), 0.5);
+}

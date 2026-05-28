@@ -1,0 +1,37 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+}
+
+.badge-muted {
+  background: rgba(var(--theme-glass-rgb), 0.02);
+  color: var(--text-muted);
+  border-color: rgba(var(--theme-glass-rgb), 0.05);
+}
+
+.badge-neon {
+  background: rgba(6, 182, 212, 0.08);
+  color: var(--primary-cyan);
+  border-color: rgba(6, 182, 212, 0.15);
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.1);
+}
+
+.badge-premium {
+  background: rgba(124, 58, 237, 0.15);
+  color: var(--primary-purple);
+  border-color: rgba(124, 58, 237, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.badge-icon {
+  width: 14px;
+  height: 14px;
+}

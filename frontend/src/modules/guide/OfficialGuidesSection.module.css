@@ -1,0 +1,68 @@
+.section {
+  margin-bottom: 2rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.verifiedIcon {
+  color: var(--primary-cyan);
+}
+
+.sortSelect {
+  background: rgba(var(--theme-glass-rgb), 0.05);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+}
+
+.sortSelect:hover, .sortSelect:focus {
+  border-color: rgba(79, 70, 229, 0.5);
+  color: var(--text-primary);
+}
+
+.sortSelect option {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+/* For horizontally scrollable on mobile or tablet */
+@media (max-width: 1024px) {
+  .grid {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scrollbar-width: thin;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .grid > * {
+    min-width: 300px;
+    scroll-snap-align: start;
+  }
+}

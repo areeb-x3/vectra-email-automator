@@ -1,0 +1,120 @@
+.header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background: var(--bg-secondary);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  position: relative;
+  z-index: 100;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.left {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.logoIcon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+[data-theme="light"] .logoIcon {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+.logoText {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.actionGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.iconButton {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: var(--text-secondary);
+  background: rgba(var(--theme-glass-rgb), 0.03);
+  border: 1px solid rgba(var(--theme-glass-rgb), 0.05);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.iconButton:hover {
+  background: rgba(var(--theme-glass-rgb), 0.08);
+  color: var(--text-primary);
+  border-color: rgba(var(--theme-glass-rgb), 0.1);
+  box-shadow: 0 0 15px rgba(var(--theme-glass-rgb), 0.05);
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  transform: scale(0.8);
+}
+
+.divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(var(--theme-glass-rgb), 0.1);
+}
+
+.profileDropdown {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+  padding-right: 1rem;
+  border-radius: 14px;
+  background: rgba(var(--theme-glass-rgb), 0.03);
+  border: 1px solid rgba(var(--theme-glass-rgb), 0.05);
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.profileDropdown:hover {
+  background: rgba(var(--theme-glass-rgb), 0.06);
+  border-color: rgba(var(--theme-glass-rgb), 0.1);
+  color: var(--text-primary);
+}
+
+.avatarMini {
+  width: 32px;
+  height: 32px;
+  background: #1e293b;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  border: 1px solid rgba(var(--theme-glass-rgb), 0.1);
+}

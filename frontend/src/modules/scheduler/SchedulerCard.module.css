@@ -1,0 +1,307 @@
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 28px;
+  background: rgba(var(--theme-glass-rgb), 0.005);
+  border-bottom: 1px solid var(--border);
+  transition: var(--transition);
+  position: relative;
+  border-radius: 12px;
+}
+
+.row:hover {
+  background: rgba(var(--theme-glass-rgb), 0.02);
+  border-color: rgba(var(--theme-glass-rgb), 0.08);
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+/* Status Styles with Cinematic Accents */
+.statusActive .statusIndicator { 
+  background: var(--primary-cyan); 
+  box-shadow: 0 0 12px var(--primary-cyan); 
+}
+.statusActive .statusText { 
+  color: var(--primary-cyan); 
+}
+.statusActive .progressFill { 
+  background: linear-gradient(90deg, var(--primary), var(--primary-cyan)); 
+}
+.statusActive .iconWrapper { 
+  border-color: rgba(6, 182, 212, 0.25); 
+  color: var(--primary-cyan); 
+}
+
+.statusPaused .statusIndicator { 
+  background: var(--primary-purple); 
+  box-shadow: 0 0 10px var(--primary-purple); 
+}
+.statusPaused .statusText { 
+  color: var(--primary-purple); 
+}
+.statusPaused .progressFill { 
+  background: linear-gradient(90deg, var(--primary), var(--primary-purple)); 
+}
+.statusPaused .iconWrapper { 
+  border-color: rgba(168, 85, 247, 0.25); 
+  color: var(--primary-purple); 
+}
+
+.statusFailed .statusIndicator { 
+  background: #f85149; 
+  box-shadow: 0 0 12px #f85149; 
+}
+.statusFailed .statusText { 
+  color: #f85149; 
+}
+.statusFailed .progressFill { 
+  background: #f85149; 
+}
+.statusFailed .iconWrapper { 
+  border-color: rgba(248, 81, 73, 0.25); 
+  color: #f85149; 
+}
+
+.statusDraft .statusIndicator { 
+  background: var(--text-secondary); 
+}
+.statusDraft .statusText { 
+  color: var(--text-secondary); 
+}
+.statusDraft .iconWrapper { 
+  border-color: var(--border); 
+  color: var(--text-secondary); 
+}
+
+/* 3 Zones */
+.zoneLeft {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex: 2.2;
+  min-width: 0;
+}
+
+.zoneCenter {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex: 1.6;
+  justify-content: center;
+}
+
+.zoneRight {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 36px;
+  flex: 1.6;
+}
+
+/* Elements */
+.iconWrapper {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  background: rgba(var(--theme-glass-rgb), 0.005);
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+
+.row:hover .iconWrapper {
+  transform: scale(1.05);
+}
+
+.identityInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: 550;
+  color: var(--text-primary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.statusChip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 14px;
+  background: rgba(var(--theme-glass-rgb), 0.02);
+  border-radius: 99px;
+  border: 1px solid var(--border);
+}
+
+.statusIndicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.statusText {
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+.progressWrapper {
+  width: 140px;
+}
+
+.progressBar {
+  width: 100%;
+  height: 4px;
+  background: rgba(var(--theme-glass-rgb), 0.03);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.timingInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.timingText {
+  font-size: 13px;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.primaryBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(var(--theme-glass-rgb), 0.01);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.primaryBtn:hover {
+  background: rgba(var(--theme-glass-rgb), 0.05);
+  border-color: rgba(var(--theme-glass-rgb), 0.15);
+  transform: translateY(-1px);
+}
+
+.btnActive {
+  color: var(--primary-cyan);
+  border-color: rgba(6, 182, 212, 0.3);
+  background: rgba(6, 182, 212, 0.03);
+}
+
+.btnActive:hover {
+  background: rgba(6, 182, 212, 0.08);
+  border-color: rgba(6, 182, 212, 0.5);
+}
+
+/* Kebab Menu dropdown style */
+.menuContainer {
+  position: relative;
+}
+
+.kebabBtn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.kebabBtn:hover {
+  color: var(--text-primary);
+  background: rgba(var(--theme-glass-rgb), 0.03);
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 8px;
+  background: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 16px 36px rgba(var(--theme-shadow-rgb), 0.5);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  min-width: 170px;
+  z-index: 20;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: var(--transition);
+}
+
+.dropdownItem:hover {
+  background: rgba(var(--theme-glass-rgb), 0.05);
+  color: var(--text-primary);
+}
+
+.dangerItem {
+  color: #f85149;
+}
+
+.dangerItem:hover {
+  background: rgba(248, 81, 73, 0.08);
+  color: #ff7b72;
+}
