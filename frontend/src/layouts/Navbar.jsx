@@ -5,6 +5,7 @@ import Button from '../modules/ui/Button';
 import './Navbar.css';
 import vectraLogo from '../assets/vectra_logo.svg';
 import { useTheme } from '../context/ThemeContext';
+import { authAPI } from '../lib/api';
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
@@ -25,6 +26,20 @@ const Navbar = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    authAPI.getCurrentUser()
+      .then(res => {
+        if (res.status === 'success' && res.user) {
+          setUser(res.user);
+        } else {
+          setUser(null);
+        }
+      })
+      .catch(() => setUser(null));
   }, []);
 
   return (
@@ -97,9 +112,14 @@ const Navbar = () => {
             )}
           </motion.button>
 
-          <Button variant="glow" className="btn-sm" to="/dashboard">Dashboard</Button>
-          <Button variant="secondary" className="btn-sm" to="/login">Log In</Button>
-          <Button variant="primary" className="btn-sm" to="/signup">Sign In</Button>
+          {user ? (
+            <Button variant="glow" className="btn-sm" to="/dashboard">Dashboard</Button>
+          ) : (
+            <>
+              <Button variant="secondary" className="btn-sm" to="/login">Log In</Button>
+              <Button variant="primary" className="btn-sm" to="/signup">Sign Up</Button>
+            </>
+          )}
         </div>
       </div>
     </motion.nav>

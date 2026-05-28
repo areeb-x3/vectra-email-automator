@@ -86,3 +86,63 @@ def forum_test_page(request):
     from vectra.forum.models import Thread
     threads = Thread.objects.all().prefetch_related('comments')
     return render(request, "test_forums.html", {'threads': threads})
+
+
+import os
+from django.conf import settings
+from django.http import HttpResponse
+
+def serve_react(request, path=None):
+    try:
+        dist_path = os.path.join(settings.BASE_DIR, 'frontend', 'dist', 'index.html')
+        with open(dist_path, 'r', encoding='utf-8') as f:
+            return HttpResponse(f.read())
+    except FileNotFoundError:
+        return HttpResponse(
+            """
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>React App Not Built</title>
+                <style>
+                    body {
+                        font-family: 'Inter', system-ui, sans-serif;
+                        background: #0f172a;
+                        color: #f1f5f9;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 100vh;
+                        margin: 0;
+                    }
+                    .container {
+                        max-width: 600px;
+                        padding: 2.5rem;
+                        background: #1e293b;
+                        border-radius: 12px;
+                        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+                        text-align: center;
+                    }
+                    h2 { color: #f43f5e; margin-top: 0; }
+                    code { background: #334155; padding: 0.2rem 0.4rem; border-radius: 4px; color: #38bdf8; font-family: monospace; }
+                    a { color: #38bdf8; text-decoration: none; }
+                    a:hover { text-decoration: underline; }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <h2>React Frontend Not Built Yet</h2>
+                    <p>To connect and serve the React application through Django, you must build the frontend assets.</p>
+                    <p>Run the following command in the <code>frontend/</code> directory:</p>
+                    <p><code>npm run build</code></p>
+                    <p style="margin-top: 1.5rem; font-size: 0.9rem; color: #94a3b8;">
+                        Alternatively, run the separate frontend development server: <br/>
+                        <code>npm run dev</code> inside <code>frontend/</code>
+                    </p>
+                </div>
+            </body>
+            </html>
+            """,
+            status=501,
+        )

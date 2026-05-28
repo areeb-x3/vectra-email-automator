@@ -1,13 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthCard from './AuthCard';
 import InputField from './InputField';
 import GradientButton from './GradientButton';
 import useForm from '../../hooks/useForm';
 import bgImage from '../../assets/auth-bg.png';
+import { authAPI } from '../../lib/api';
 import './Auth.css';
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const [apiError, setApiError] = useState('');
+  
   const initialValues = {
     email: '',
     password: ''
@@ -41,10 +45,20 @@ const LoginPage = () => {
     isValid
   } = useForm(initialValues, validate);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log('Login successful:', values);
+      try {
+        setApiError('');
+        const res = await authAPI.login(values.email, values.password);
+        if (res.status === 'success') {
+          navigate('/dashboard');
+        } else {
+          setApiError(res.message || 'Login failed');
+        }
+      } catch (err) {
+        setApiError(err.response?.data?.message || 'Login failed. Please check your credentials.');
+      }
     }
   };
 
@@ -70,6 +84,20 @@ const LoginPage = () => {
         </div>
 
         <form className="auth-form" onSubmit={handleSubmit} noValidate>
+          {apiError && (
+            <div className="auth-error-alert" style={{
+              background: 'rgba(239, 68, 68, 0.1)',
+              border: '1px solid rgba(239, 68, 68, 0.2)',
+              borderRadius: '8px',
+              color: '#f43f5e',
+              padding: '0.75rem',
+              fontSize: '0.875rem',
+              marginBottom: '1.25rem',
+              textAlign: 'center'
+            }}>
+              {apiError}
+            </div>
+          )}
           <InputField
             id="email"
             label="Email Address"

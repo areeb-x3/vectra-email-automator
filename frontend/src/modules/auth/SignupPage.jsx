@@ -1,13 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import AuthCard from './AuthCard';
 import InputField from './InputField';
 import GradientButton from './GradientButton';
 import useForm from '../../hooks/useForm';
 import bgImage from '../../assets/auth-bg.png';
+import { authAPI } from '../../lib/api';
 import './Auth.css';
 
 const SignupPage = () => {
+  const navigate = useNavigate();
+  const [apiError, setApiError] = useState('');
+
   const initialValues = {
     firstName: '',
     lastName: '',
@@ -58,10 +62,26 @@ const SignupPage = () => {
     isValid
   } = useForm(initialValues, validate);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log('Signup successful:', values);
+      try {
+        setApiError('');
+        const res = await authAPI.signup(
+          values.firstName,
+          values.lastName,
+          values.email,
+          values.password,
+          values.confirmPassword
+        );
+        if (res.status === 'success') {
+          navigate('/dashboard');
+        } else {
+          setApiError(res.message || 'Signup failed');
+        }
+      } catch (err) {
+        setApiError(err.response?.data?.message || 'Signup failed. Please try again.');
+      }
     }
   };
 
@@ -87,6 +107,20 @@ const SignupPage = () => {
         </div>
 
         <form className="auth-form" onSubmit={handleSubmit} noValidate>
+          {apiError && (
+            <div className="auth-error-alert" style={{
+              background: 'rgba(239, 68, 68, 0.1)',
+              border: '1px solid rgba(239, 68, 68, 0.2)',
+              borderRadius: '8px',
+              color: '#f43f5e',
+              padding: '0.75rem',
+              fontSize: '0.875rem',
+              marginBottom: '1.25rem',
+              textAlign: 'center'
+            }}>
+              {apiError}
+            </div>
+          )}
           <div className="input-group-row">
             <InputField
               id="firstName"

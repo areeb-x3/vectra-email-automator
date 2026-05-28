@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Button from '../modules/ui/Button';
 import DashboardPreview from '../modules/dashboard/DashboardPreview';
 import { staggerContainer, itemFadeIn } from '../lib/motion';
+import { authAPI } from '../lib/api';
 import './Hero.css';
 import heroImg from '../assets/hero.png';
 
 const Hero = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    authAPI.getCurrentUser()
+      .then(res => {
+        if (res.status === 'success' && res.user) {
+          setUser(res.user);
+        } else {
+          setUser(null);
+        }
+      })
+      .catch(() => setUser(null));
+  }, []);
+
   return (
     <section className="hero-section" style={{ backgroundImage: `url(${heroImg})` }}>
       <motion.div
@@ -36,8 +51,14 @@ const Hero = () => {
             Reach the right people at the right time with personalized campaigns.
           </motion.p>
           <motion.div variants={itemFadeIn} className="hero-actions">
-            <Button variant="primary" href="#">Get Started Free</Button>
-            <Button variant="secondary" href="#">Watch Demo</Button>
+            {user ? (
+              <Button variant="primary" to="/dashboard">Open Vectra</Button>
+            ) : (
+              <>
+                <Button variant="primary" to="/signup">Get Started Free</Button>
+                <Button variant="secondary" href="#">Watch Demo</Button>
+              </>
+            )}
           </motion.div>
 
           <motion.div
