@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 :root {
+  --black: rgb(0, 0, 0);
   /* Cinematic Space / Deep Dark background */
   --bg-primary: #020617;      /* Deepest dark space */
   --bg-secondary: #070c20;    /* Dark layer 1 */

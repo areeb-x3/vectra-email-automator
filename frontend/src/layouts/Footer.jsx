@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="container footer-container">
-        <p>&copy; 2025 Vectra Automation. All rights reserved.</p>
+        <p>&copy; 2026 Vectra Automation. All rights reserved.</p>
         <div className="footer-links">
           <a href="#">Privacy Policy</a>
           <a href="#">Terms of Service</a>
