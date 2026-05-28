@@ -72,6 +72,10 @@ export const emailAPI = {
 
 // Organisation & Contact APIs
 export const orgAPI = {
+  listOrganisations: async () => {
+    const response = await api.get('/api/organisations/');
+    return response.data;
+  },
   createOrganisation: async (formData) => {
     const response = await api.post('/api/create-organisation/', formData, {
       headers: {

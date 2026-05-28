@@ -35,11 +35,14 @@ class bulk_sender:
     
     # Bulk send
     @classmethod
-    def send_bulk_emails(cls, user, recipients, subject, body):
+    def send_bulk_emails(cls, user, recipients, subject, body, group_name="General"):
         token_data = token_handler.fetch_token(user)
         service = cls.get_gmail_service(token_data)
 
         for r in recipients:
-            msg = cls.create_message(r, subject, body)
+            name = r.split('@')[0] if '@' in r else r
+            personalized_subject = subject.replace('{{name}}', name).replace('{{email}}', r).replace('{{group}}', group_name)
+            personalized_body = body.replace('{{name}}', name).replace('{{email}}', r).replace('{{group}}', group_name)
+            msg = cls.create_message(r, personalized_subject, personalized_body)
             cls.send_email(service, "me", msg)
             print(f"Sent to {r}")

@@ -4,6 +4,9 @@ from . import views
 app_name = 'org_manager'
 
 urlpatterns = [
+    # Organisation list URL
+    path("organisations/", views.get_organisations, name="get_organisations"),
+
     # Organisation URLs
     path("create-organisation/", views.create_organisation, name="create_organisation"),
     path("modify-organisation/", views.modify_organisation, name="modify_organisation"),

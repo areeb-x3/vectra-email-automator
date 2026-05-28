@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Button from '../ui/Button';
 import Card from '../ui/Card';
@@ -6,6 +6,14 @@ import Badge from '../ui/Badge';
 import styles from './PremiumBanner.module.css';
 
 const PremiumBanner = () => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  const handleDismiss = () => {
+    setIsVisible(false);
+  };
+
+  if (!isVisible) return null;
+
   return (
     <Card variant="prominent" className={styles.banner}>
       <div className={styles.content}>
@@ -19,7 +27,7 @@ const PremiumBanner = () => {
           <Button variant="glow" className={styles.primaryBtn}>
             Upgrade Plan
           </Button>
-          <Button variant="glass" className={styles.secondaryBtn}>
+          <Button variant="glass" className={styles.secondaryBtn} onClick={handleDismiss}>
             Not Interested
           </Button>
         </div>

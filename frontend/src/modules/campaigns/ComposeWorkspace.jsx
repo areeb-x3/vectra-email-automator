@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useOrganisations } from '../../context/OrganisationContext';
+import { emailAPI } from '../../lib/api';
 import Button from '../ui/Button';
 import ScheduleComposeModal from './ScheduleComposeModal';
 import styles from './ComposeWorkspace.module.css';
@@ -40,7 +41,7 @@ const ComposeWorkspace = ({ organisation }) => {
 
   const { addActivity } = useOrganisations();
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (selectedGroups.length === 0 || !subject || !body) return;
     setIsSending(true);
 
@@ -48,50 +49,70 @@ const ComposeWorkspace = ({ organisation }) => {
     const recipients = [];
     selectedGroups.forEach(groupId => {
       const group = organisation.groups.find(g => g.id === groupId);
-      group.recipients.forEach(r => {
-        if (!recipients.find(existing => existing.email === r.email)) {
-          recipients.push(r);
-        }
-      });
+      if (group && group.recipients) {
+        group.recipients.forEach(r => {
+          if (!recipients.find(existing => existing.email === r.email)) {
+            recipients.push(r);
+          }
+        });
+      }
     });
 
-    // Simulate sending
-    setTimeout(() => {
+    try {
+      const res = await emailAPI.sendBulkMail(subject, body, selectedGroups);
       setIsSending(false);
-      
-      // Log detailed activity with variable replacement example
-      const previewRecipient = recipients[0] || { name: 'Recipient', email: 'example@mail.com' };
-      const previewGroup = selectedGroups[0] ? organisation.groups.find(g => g.id === selectedGroups[0])?.name : 'General';
-      
-      const personalize = (text, r, gName) => {
-        return text
-          .replace(/{{name}}/g, r.name)
-          .replace(/{{email}}/g, r.email)
-          .replace(/{{group}}/g, gName);
-      };
 
-      const personalizedBody = personalize(body, previewRecipient, previewGroup);
+      if (res.status === 'oauth_required' && res.auth_url) {
+        // Redirect the user to Google OAuth page to authorize Gmail
+        window.location.href = res.auth_url;
+        return;
+      }
 
-      addActivity(organisation.id, { 
-        type: 'emails', 
-        content: `Sent "${subject}" to ${recipients.length} recipients`, 
-        status: 'success',
-        metadata: {
-          subject,
-          body: personalizedBody, 
-          recipientCount: recipients.length,
-          groups: selectedGroups.map(id => organisation.groups.find(g => g.id === id)?.name),
-          fullHistory: recipients.map(r => {
-            const rGroup = organisation.groups.find(g => g.recipients.find(rec => rec.email === r.email))?.name || 'General';
-            return {
-              email: r.email,
-              personalized: personalize(body, r, rGroup)
-            };
-          })
-        }
-      });
-      alert(`Broadcast sent to ${recipients.length} recipients successfully!`);
-    }, 2000);
+      if (res.status === 'success') {
+        // Log detailed activity with variable replacement example
+        const previewRecipient = recipients[0] || { name: 'Recipient', email: 'example@mail.com' };
+        const previewGroup = selectedGroups[0] ? organisation.groups.find(g => g.id === selectedGroups[0])?.name : 'General';
+        
+        const personalize = (text, r, gName) => {
+          return text
+            .replace(/{{name}}/g, r.name)
+            .replace(/{{email}}/g, r.email)
+            .replace(/{{group}}/g, gName);
+        };
+
+        const personalizedBody = personalize(body, previewRecipient, previewGroup);
+
+        addActivity(organisation.id, { 
+          type: 'emails', 
+          content: `Sent "${subject}" to ${recipients.length} recipients`, 
+          status: 'success',
+          metadata: {
+            subject,
+            body: personalizedBody, 
+            recipientCount: recipients.length,
+            groups: selectedGroups.map(id => organisation.groups.find(g => g.id === id)?.name),
+            fullHistory: recipients.map(r => {
+              const rGroup = organisation.groups.find(g => g.recipients.find(rec => rec.email === r.email))?.name || 'General';
+              return {
+                email: r.email,
+                personalized: personalize(body, r, rGroup)
+              };
+            })
+          }
+        });
+        alert(`Broadcast sent to ${recipients.length} recipients successfully!`);
+        // Clear compose form state after successful send
+        setSubject('');
+        setBody('');
+        setSelectedGroups([]);
+      } else {
+        alert(res.message || 'Failed to send bulk mail.');
+      }
+    } catch (err) {
+      console.error('Error sending bulk mail:', err);
+      setIsSending(false);
+      alert(err.response?.data?.message || 'Error occurred while sending bulk mail.');
+    }
   };
 
   const filteredGroups = organisation.groups?.filter(g => 

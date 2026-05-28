@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import Badge from '../ui/Badge';
 import styles from './Sidebar.module.css';
+import { authAPI } from '../../lib/api';
 
 // Icons as inline SVGs
 const HomeIcon = () => (
@@ -44,6 +46,59 @@ const navItems = [
 ];
 
 const Sidebar = ({ activeTab = 'home', onTabChange }) => {
+  const [user, setUser] = useState(null);
+  const [showFlyout, setShowFlyout] = useState(false);
+  const navigate = useNavigate();
+  const footerRef = useRef(null);
+
+  useEffect(() => {
+    authAPI.getCurrentUser()
+      .then(res => {
+        if (res.status === 'success' && res.user) {
+          setUser(res.user);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (footerRef.current && !footerRef.current.contains(event.target)) {
+        setShowFlyout(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleLogout = async (e) => {
+    e.stopPropagation();
+    try {
+      await authAPI.logout();
+      navigate('/login');
+    } catch (err) {
+      console.error('Logout failed:', err);
+      navigate('/login');
+    }
+  };
+
+  const getInitials = () => {
+    if (!user) return 'JD';
+    const first = user.first_name ? user.first_name[0].toUpperCase() : '';
+    const last = user.last_name ? user.last_name[0].toUpperCase() : '';
+    return first + last || user.email[0].toUpperCase();
+  };
+
+  const getFullName = () => {
+    if (!user) return 'John Doe';
+    if (user.first_name || user.last_name) {
+      return `${user.first_name || ''} ${user.last_name || ''}`.trim();
+    }
+    return user.email;
+  };
+
   return (
     <aside className={styles.sidebar}>
       {/* <div className={styles.logo}>
@@ -73,11 +128,22 @@ const Sidebar = ({ activeTab = 'home', onTabChange }) => {
         ))}
       </nav>
 
-      <div className={styles.footer}>
-        <div className={styles.userProfile}>
-          <div className={styles.avatar}>JD</div>
+      <div ref={footerRef} className={styles.footer} style={{ position: 'relative' }}>
+        {showFlyout && (
+          <div className={styles.profileFlyout}>
+            <button className={styles.flyoutItem}>Upgrade Plan</button>
+            <button className={styles.flyoutItem}>Account Settings</button>
+            <button className={styles.flyoutItem}>Help</button>
+            <div className={styles.flyoutDivider} />
+            <button className={`${styles.flyoutItem} ${styles.danger}`} onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
+        )}
+        <div className={styles.userProfile} onClick={() => setShowFlyout(!showFlyout)} style={{ cursor: 'pointer' }}>
+          <div className={styles.avatar}>{getInitials()}</div>
           <div className={styles.userInfo}>
-            <span className={styles.userName}>John Doe</span>
+            <span className={styles.userName}>{getFullName()}</span>
             <Badge variant="premium">Premium</Badge>
           </div>
         </div>
