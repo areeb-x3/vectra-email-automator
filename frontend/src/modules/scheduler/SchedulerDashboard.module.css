@@ -1,0 +1,223 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.layout {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 0;
+}
+
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.statCard {
+  background: rgba(var(--theme-glass-rgb), 0.01);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: var(--transition);
+}
+
+.statCard:hover {
+  background: rgba(var(--theme-glass-rgb), 0.025);
+  border-color: rgba(var(--theme-glass-rgb), 0.08);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.statLabel {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.statValue {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.textActive {
+  background: linear-gradient(135deg, #3fb950, var(--primary-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.textFailed {
+  background: linear-gradient(135deg, #f85149, var(--primary-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 20px;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  background: rgba(var(--theme-glass-rgb), 0.01);
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.tab {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: 9px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.tab:hover {
+  color: var(--text-primary);
+  background: rgba(var(--theme-glass-rgb), 0.03);
+}
+
+.activeTab {
+  background: rgba(var(--theme-glass-rgb), 0.05);
+  color: var(--text-primary);
+  box-shadow: 0 4px 20px rgba(var(--theme-shadow-rgb), 0.1);
+  border: 1px solid rgba(var(--theme-glass-rgb), 0.05);
+}
+
+.tabCount {
+  background: rgba(var(--theme-glass-rgb), 0.05);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 11px;
+}
+
+.activeTab .tabCount {
+  background: rgba(var(--theme-glass-rgb), 0.15);
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(var(--theme-glass-rgb), 0.01);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px 16px;
+  color: var(--text-secondary);
+  transition: var(--transition);
+}
+
+.searchBox:focus-within {
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.1);
+  background: rgba(var(--theme-glass-rgb), 0.02);
+}
+
+.searchInput {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 13px;
+  outline: none;
+  width: 220px;
+}
+
+.searchInput::placeholder {
+  color: var(--text-muted);
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  background: rgba(var(--theme-glass-rgb), 0.005);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 12px;
+  gap: 12px;
+}
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.emptyIcon {
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  opacity: 0.6;
+}
+
+.emptyState h3 {
+  font-size: 18px;
+  color: var(--text-primary);
+  margin: 0 0 10px 0;
+  font-weight: 550;
+}
+
+.emptyState p {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 13.5px;
+  max-width: 320px;
+}
+
+@media (max-width: 1200px) {
+  .layout {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 1024px) {
+  .statsRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .searchBox {
+    width: 100%;
+  }
+  .searchInput {
+    width: 100%;
+  }
+}

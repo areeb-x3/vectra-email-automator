@@ -1,0 +1,51 @@
+.cta-section {
+  background: var(--bg-secondary);
+  background-image: var(--bg-shell-gradient);
+  color: var(--text-primary);
+  text-align: center;
+  padding: 8rem 0;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--border-soft);
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at top, rgba(var(--primary-rgb), 0.05), transparent 60%);
+  pointer-events: none;
+}
+
+.cta-container {
+  max-width: 850px;
+  position: relative;
+  z-index: 2;
+}
+
+.cta-section h2 {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.cta-section p {
+  font-size: 1.25rem;
+  color: rgba(var(--theme-glass-rgb), 0.9);
+  margin-bottom: 3.5rem;
+}
+
+.btn-lg {
+  padding: 1.2rem 3rem;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .cta-section h2 {
+    font-size: 2rem;
+  }
+}

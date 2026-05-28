@@ -1,0 +1,98 @@
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  background-image: var(--gradient-bg);
+  color: var(--text-primary);
+  position: relative;
+}
+
+.gridRight {
+  flex: 1;
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.placeholder {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  background: rgba(var(--theme-glass-rgb), 0.02);
+  border-radius: 24px;
+  border: 1px dashed rgba(var(--theme-glass-rgb), 0.1);
+  color: rgba(var(--theme-glass-rgb), 0.3);
+}
+
+.workspaceBody {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.scrollArea {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem 2.5rem; /* Adjusted padding */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--theme-glass-rgb), 0.05) transparent;
+}
+
+.scrollArea::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrollArea::-webkit-scrollbar-thumb {
+  background-color: rgba(var(--theme-glass-rgb), 0.05);
+  border-radius: 10px;
+}
+
+.contentWrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  padding-bottom: 6rem; /* Scroll buffer to prevent bottom jumps */
+  min-height: 100%; /* Ensure container doesn't collapse */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 2.5rem; /* Increased gap */
+  align-items: start;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .scrollArea {
+    padding: 1.5rem;
+  }
+  .contentWrapper {
+    gap: 1.5rem;
+  }
+}

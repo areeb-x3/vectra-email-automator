@@ -1,0 +1,99 @@
+.guidanceSection {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.required {
+  color: var(--error, #ef4444);
+  font-size: 0.8rem;
+  font-weight: normal;
+}
+
+.input, .textarea {
+  background: rgba(var(--theme-glass-rgb), 0.03);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.titleInput {
+  font-size: 1.25rem;
+  font-weight: 500;
+  padding: 1rem 1.25rem;
+  background: transparent;
+  border: 1px solid var(--border-soft);
+}
+
+.titleInput::placeholder {
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.input:focus, .textarea:focus {
+  border-color: rgba(99, 102, 241, 0.5);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  background: rgba(var(--theme-glass-rgb), 0.05);
+}
+
+.input::placeholder, .textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.tagsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: rgba(var(--theme-glass-rgb), 0.02);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+}
+
+.errorText {
+  color: var(--error, #ef4444);
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-soft);
+}

@@ -1,0 +1,28 @@
+.tagPill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: color-mix(in srgb, var(--tag-color, #888) 80%, var(--tag-mix-color, #fff));
+  background-color: color-mix(in srgb, var(--tag-color, #888) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--tag-color, #888) 15%, transparent);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.selectable {
+  cursor: pointer;
+}
+
+.selectable:hover {
+  background-color: color-mix(in srgb, var(--tag-color, #888) 15%, transparent);
+  border-color: color-mix(in srgb, var(--tag-color, #888) 30%, transparent);
+}
+
+.selected {
+  background-color: color-mix(in srgb, var(--tag-color, #888) 25%, transparent);
+  color: var(--text-primary);
+  border-color: color-mix(in srgb, var(--tag-color, #888) 50%, transparent);
+}

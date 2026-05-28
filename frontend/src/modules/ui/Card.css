@@ -1,0 +1,80 @@
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-radius: 28px;
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-elevated);
+  position: relative;
+  overflow: visible;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-standard {
+  padding: 1.5rem;
+}
+
+.card-prominent {
+  padding: 1.5rem 3rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border-primary);
+  box-shadow: var(--shadow-elevated);
+}
+
+.card-interactive {
+  cursor: pointer;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.card-interactive:hover {
+  background: var(--bg-elevated);
+  border-color: var(--border-strong);
+  box-shadow: 0 12px 36px rgba(var(--theme-shadow-rgb), 0.08); 
+}
+
+.card-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(var(--theme-glass-rgb), 0.1),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+  border-radius: inherit;
+}
+
+.card-interactive:hover .card-shine {
+  opacity: 1;
+}
+
+.card-content {
+  position: relative;
+  z-index: 3;
+}
+
+.card-glow {
+  position: absolute;
+  bottom: -40px;
+  right: -40px;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.1;
+  z-index: 1;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+
+.card-interactive:hover .card-glow {
+  opacity: 0.3;
+  transform: scale(1.2);
+}

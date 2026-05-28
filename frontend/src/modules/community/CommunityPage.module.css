@@ -1,0 +1,57 @@
+.communityContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-bottom: 2rem;
+}
+
+.mainContent {
+  display: flex;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  flex: 1;
+  min-height: 0;
+}
+
+.feedSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* Prevents flex item from overflowing */
+}
+
+.sidebarSection {
+  width: 320px;
+  flex-shrink: 0;
+}
+
+/* Scrollable container for threads */
+.feedScrollArea {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 1rem; /* Space for scrollbar */
+}
+
+/* Hide scrollbar for cleaner look but keep functionality */
+.feedScrollArea::-webkit-scrollbar {
+  width: 6px;
+}
+
+.feedScrollArea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.feedScrollArea::-webkit-scrollbar-thumb {
+  background: var(--border-soft);
+  border-radius: 10px;
+}
+
+.feedScrollArea::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted, #555);
+}
+
+@media (max-width: 1024px) {
+  .sidebarSection {
+    display: none; /* Hide right sidebar on smaller screens */
+  }
+}

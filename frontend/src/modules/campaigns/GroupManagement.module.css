@@ -1,0 +1,244 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.addGroup {
+  display: flex;
+  gap: 1rem;
+  background: rgba(var(--theme-glass-rgb), 0.02);
+  padding: 1rem;
+  border-radius: 16px;
+  border: 1px solid rgba(var(--theme-glass-rgb), 0.05);
+}
+
+.input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 1rem;
+  outline: none;
+}
+
+.input::placeholder {
+  color: rgba(var(--theme-glass-rgb), 0.2);
+}
+
+.groupList {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.groupCard {
+  background: rgba(var(--theme-glass-rgb), 0.02);
+  border: 1px solid rgba(var(--theme-glass-rgb), 0.05);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.groupHeader {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.groupHeader:hover {
+  background: rgba(var(--theme-glass-rgb), 0.04);
+}
+
+.groupName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.recipientCount {
+  font-size: 0.8125rem;
+  color: rgba(var(--theme-glass-rgb), 0.3);
+}
+
+.groupActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.actionBtn {
+  background: transparent;
+  border: none;
+  color: rgba(var(--theme-glass-rgb), 0.2);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.actionBtn:hover {
+  background: rgba(var(--theme-glass-rgb), 0.05);
+  color: var(--text-primary);
+}
+
+.activeEdit {
+  background: rgba(139, 92, 246, 0.1);
+  color: #a78bfa !important;
+}
+
+.deleteGroupBtn {
+  background: transparent;
+  border: none;
+  color: rgba(239, 68, 68, 0.4);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deleteGroupBtn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.chevron {
+  color: rgba(var(--theme-glass-rgb), 0.2);
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.expanded {
+  transform: rotate(180deg);
+}
+
+.groupBody {
+  padding: 1.5rem;
+  border-top: 1px solid rgba(var(--theme-glass-rgb), 0.05);
+  overflow: hidden;
+}
+
+.editInterface {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.editSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.editLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(var(--theme-glass-rgb), 0.3);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bulkAdd {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.importOptions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.bulkInputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+.csvImport {
+  height: 100%;
+}
+
+.bulkInput {
+  background: rgba(var(--theme-glass-rgb), 0.03);
+  border: 1px solid rgba(var(--theme-glass-rgb), 0.1);
+  border-radius: 12px;
+  padding: 1rem;
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  width: 100%;
+  min-height: 80px;
+  outline: none;
+  resize: vertical;
+  transition: border-color 0.2s ease;
+}
+
+.bulkAddBtn {
+  min-width: 150px;
+}
+
+.bulkInput:focus {
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.editActions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.recipientList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.recipientChip {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  color: #a78bfa;
+  padding: 0.25rem 0.75rem;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+}
+
+.removeRecipient {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.125rem;
+  border-radius: 50%;
+  transition: background 0.2s ease;
+}
+
+.removeRecipient:hover {
+  background: rgba(139, 92, 246, 0.2);
+}
+
+.emptyRecipients {
+  color: rgba(var(--theme-glass-rgb), 0.2);
+  font-size: 0.875rem;
+  font-style: italic;
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0;
+}

@@ -1,0 +1,168 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+  min-height: 350px;
+  padding: 2.25rem 2rem 2rem 2rem !important;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  gap: 2rem;
+}
+
+.title {
+  font-size: var(--fs-section);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.viewAll {
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: transparent;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid rgba(var(--theme-glass-rgb), 0.05);
+}
+
+.content {
+  padding: 1rem 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.emptyState {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 2rem 0;
+}
+
+.illustration {
+  margin-bottom: 0.25rem;
+  color: #475569;
+  filter: drop-shadow(0 0 15px rgba(var(--theme-glass-rgb), 0.02));
+}
+
+.emptyText {
+  font-size: var(--fs-body);
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.createBtn {
+  background: linear-gradient(135deg, #4f46e5 0%, var(--primary-cyan) 100%);
+  color: #ffffff;
+  padding: 0.85rem 1.75rem;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(var(--theme-glass-rgb), 0.1);
+  box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+}
+
+.createBtn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.4);
+  filter: brightness(1.1);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.countBadge {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  color: var(--primary-purple);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.625rem;
+  border-radius: 100px;
+}
+
+.orgItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(var(--theme-glass-rgb), 0.02);
+  border: 1px solid rgba(var(--theme-glass-rgb), 0.05);
+  border-radius: 16px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.orgItem:hover {
+  background: rgba(var(--theme-glass-rgb), 0.05);
+  border-color: rgba(var(--theme-glass-rgb), 0.1);
+  transform: translateX(4px);
+}
+
+.orgAvatar {
+  width: 40px;
+  height: 40px;
+  background: rgba(var(--primary-rgb), 0.08);
+  border: 1px solid rgba(var(--primary-rgb), 0.15);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--primary);
+  transition: all 0.3s ease;
+}
+
+.orgItem:hover .orgAvatar {
+  background: rgba(var(--primary-rgb), 0.14);
+  border-color: rgba(var(--primary-rgb), 0.3);
+  color: var(--primary-purple);
+  transform: scale(1.05);
+}
+
+.orgInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.orgName {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.orgSub {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.arrow {
+  color: rgba(var(--theme-glass-rgb), 0.2);
+}
+
+.moreCount {
+  font-size: 0.8125rem;
+  color: rgba(var(--theme-glass-rgb), 0.3);
+  text-align: center;
+  margin-top: 1rem;
+}
+.card-content{
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
