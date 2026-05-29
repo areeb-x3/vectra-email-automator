@@ -4,8 +4,8 @@ import styles from './StatsRow.module.css';
 
 const stats = [
   { label: 'Active Campaigns', value: '12', glowColor: 'rgba(var(--primary-rgb), 0.5)' },
-  { label: 'Total Sends', value: '1,284', glowColor: 'rgba(var(--primary-purple-rgb), 0.5)' },
-  { label: 'Open Rate', value: '64.2%', glowColor: 'rgba(var(--primary-cyan-rgb), 0.5)' },
+  { label: 'Total Sends', value: '1,284', glowColor: 'rgba(var(--primary-rgb), 0.5)' },
+  { label: 'Open Rate', value: '64.2%', glowColor: 'rgba(var(--primary-rgb), 0.5)' },
 ];
 
 const StatsRow = () => {

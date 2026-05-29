@@ -39,7 +39,7 @@
   bottom: 0;
   background: radial-gradient(
     circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(var(--theme-glass-rgb), 0.1),
+    rgba(var(--primary-rgb), 0.50),
     transparent 70%
   );
   opacity: 0;

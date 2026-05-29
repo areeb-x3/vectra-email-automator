@@ -25,7 +25,7 @@ const ScheduleCard = () => {
             className={styles.item}
           >
             <div className={styles.itemLeft}>
-              <IconWrapper className={styles.iconContainer}>
+              <IconWrapper glow={false} className={styles.iconContainer}>
                 <ScheduleIcon />
               </IconWrapper>
               <div className={styles.text}>

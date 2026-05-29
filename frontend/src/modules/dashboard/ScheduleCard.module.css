@@ -3,7 +3,6 @@
   flex-direction: column;
   gap: 2.25rem; /* Increased from 1.5rem for breathing room */
   position: relative;
-  margin-top: 1rem;
   padding: 2.25rem 2rem 2rem 2rem !important; /* Proper internal spacing */
 }
 
@@ -94,6 +93,7 @@
   color: var(--text-muted);
   border: 1px solid rgba(var(--theme-glass-rgb), 0.05);
   transition: all 0.3s ease;
+  margin: 0 !important;
 }
 
 .item:hover .iconContainer {

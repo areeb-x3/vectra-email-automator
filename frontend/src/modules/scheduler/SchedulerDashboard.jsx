@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useScheduler } from '../../context/SchedulerContext';
 import SchedulerCard from './SchedulerCard';
 import SchedulerActivitySidebar from './SchedulerActivitySidebar';
+import Card from '../ui/Card';
 import styles from './SchedulerDashboard.module.css';
 
 const SchedulerDashboard = () => {
@@ -23,22 +24,30 @@ const SchedulerDashboard = () => {
         <div className={styles.mainContent}>
           {/* Operational Summary */}
           <div className={styles.statsRow}>
-            <div className={styles.statCard}>
-              <span className={styles.statLabel}>Total Schedules</span>
-              <span className={styles.statValue}>{stats.total}</span>
-            </div>
-            <div className={styles.statCard}>
-              <span className={styles.statLabel}>Active</span>
-              <span className={`${styles.statValue} ${styles.textActive}`}>{stats.active}</span>
-            </div>
-            <div className={styles.statCard}>
-              <span className={styles.statLabel}>Failed</span>
-              <span className={`${styles.statValue} ${stats.failed > 0 ? styles.textFailed : ''}`}>{stats.failed}</span>
-            </div>
-            <div className={styles.statCard}>
-              <span className={styles.statLabel}>Upcoming Executions</span>
-              <span className={styles.statValue}>{stats.upcomingExecutions}</span>
-            </div>
+            <Card interactive={true} className={styles.statCard}>
+              <div className={styles.cardContent}>
+                <span className={styles.statLabel}>Total Schedules</span>
+                <span className={styles.statValue}>{stats.total}</span>
+              </div>
+            </Card>
+            <Card interactive={true} className={styles.statCard}>
+              <div className={styles.cardContent}>
+                <span className={styles.statLabel}>Active</span>
+                <span className={`${styles.statValue} ${styles.textActive}`}>{stats.active}</span>
+              </div>
+            </Card>
+            <Card interactive={true} className={styles.statCard}>
+              <div className={styles.cardContent}>
+                <span className={styles.statLabel}>Failed</span>
+                <span className={`${styles.statValue} ${stats.failed > 0 ? styles.textFailed : ''}`}>{stats.failed}</span>
+              </div>
+            </Card>
+            <Card interactive={true} className={styles.statCard}>
+              <div className={styles.cardContent}>
+                <span className={styles.statLabel}>Upcoming Executions</span>
+                <span className={styles.statValue}>{stats.upcomingExecutions}</span>
+              </div>
+            </Card>
           </div>
 
           {/* Filters & Controls */}
