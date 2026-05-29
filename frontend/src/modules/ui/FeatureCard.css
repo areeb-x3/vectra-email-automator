@@ -2,7 +2,7 @@
   background: var(--bg-surface);
   padding: 3rem 2.5rem;
   border-radius: var(--border-radius);
-  border: 1px solid var(--border-dark);
+  border: 3px solid transparent;
   transition: var(--transition);
   text-align: left;
   display: flex;
@@ -43,4 +43,5 @@
   color: var(--text-secondary);
   font-size: 1rem;
   line-height: 1.6;
+  min-height: 4.8rem;
 }

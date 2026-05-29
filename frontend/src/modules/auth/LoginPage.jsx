@@ -4,7 +4,7 @@ import AuthCard from './AuthCard';
 import InputField from './InputField';
 import GradientButton from './GradientButton';
 import useForm from '../../hooks/useForm';
-import bgImage from '../../assets/login.jpeg';
+import bgImage from '../../assets/auth-bg.jpeg';
 import { authAPI } from '../../lib/api';
 import './Auth.css';
 
