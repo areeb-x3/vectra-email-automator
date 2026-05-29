@@ -2,13 +2,14 @@
   background: var(--bg-surface);
   padding: 3rem 2.5rem;
   border-radius: var(--border-radius);
-  border: 2px solid var(--border-dark);
+  border: 1px solid var(--border-dark);
   transition: var(--transition);
   text-align: left;
   display: flex;
   flex-direction: column;
   position: relative;
   perspective: 1000px;
+  overflow: hidden;
 }
 
 .feature-card:hover {
