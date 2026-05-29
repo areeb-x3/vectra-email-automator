@@ -11,6 +11,16 @@ const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
+
+  const handleFeaturesClick = (e) => {
+    if (location.pathname === '/') {
+      e.preventDefault();
+      const element = document.getElementById('features');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
   const [isScrolled, setIsScrolled] = useState(false);
   const { scrollY } = useScroll();
 
@@ -44,11 +54,7 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className="navbar"
-      style={{
-        backgroundColor,
-        borderBottom: isScrolled ? "1px solid var(--border-dark)" : "1px solid transparent"
-      }}
+      className={`navbar ${isAuthPage ? 'is-auth-navbar' : ''} ${isScrolled ? 'is-scrolled' : ''}`}
     >
       <div className="container nav-container">
         <Link to="/" className="logo">
@@ -57,23 +63,27 @@ const Navbar = () => {
         </Link>
 
         <div className="nav-links">
-          {['Features', 'Solutions', 'Pricing'].map((link) => (
-            <motion.a
-              key={link}
-              href="#"
-              className="nav-link"
-              whileHover={{ color: "var(--primary)" }}
-            >
-              {link}
-              <motion.div
-                className="link-underline"
-                layoutId="underline"
-                initial={{ scaleX: 0 }}
-                whileHover={{ scaleX: 1 }}
-                transition={{ duration: 0.3 }}
-              />
-            </motion.a>
-          ))}
+          {['Features', 'Solutions', 'Pricing'].map((link) => {
+            const isFeatures = link === 'Features';
+            return (
+              <motion.a
+                key={link}
+                href={isFeatures ? "/#features" : "#"}
+                onClick={isFeatures ? handleFeaturesClick : undefined}
+                className="nav-link"
+                whileHover={{ color: "var(--primary)" }}
+              >
+                {link}
+                <motion.div
+                  className="link-underline"
+                  layoutId="underline"
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.a>
+            );
+          })}
         </div>
 
         <div className="nav-actions">

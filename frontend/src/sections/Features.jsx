@@ -52,7 +52,7 @@ const featuresData = [
 
 const Features = () => {
   return (
-    <section className="features-section">
+    <section id="features" className="features-section">
       {/* SVG Gradient Definitions for Multicolored Icons */}
       <svg width="0" height="0" style={{ position: 'absolute', pointerEvents: 'none' }} aria-hidden="true">
         <defs>

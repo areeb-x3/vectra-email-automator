@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import './Auth.css';
 
-const AuthCard = ({ children }) => {
+const AuthCard = ({ children, className = "" }) => {
   const cardRef = useRef(null);
 
   const handleMouseMove = (e) => {
@@ -27,7 +27,7 @@ const AuthCard = ({ children }) => {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="auth-card"
+      className={`auth-card ${className}`}
     >
       <div style={{ position: "relative", zIndex: 2 }}>
         {children}

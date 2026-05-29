@@ -6,6 +6,7 @@ import GradientButton from './GradientButton';
 import useForm from '../../hooks/useForm';
 import bgImage from '../../assets/auth-bg.jpeg';
 import { authAPI } from '../../lib/api';
+import Footer from '../../layouts/Footer';
 import './Auth.css';
 
 const LoginPage = () => {
@@ -72,73 +73,80 @@ const LoginPage = () => {
 
 
       <AuthCard>
-        <div className="auth-header">
-          <h1 className="auth-title">Welcome Back</h1>
-          <p className="auth-subtitle">Sign in to your Vectra dashboard</p>
-        </div>
-
-        <form className="auth-form" onSubmit={handleSubmit} noValidate>
-          {apiError && (
-            <div className="auth-error-alert" style={{
-              background: 'rgba(239, 68, 68, 0.1)',
-              border: '1px solid rgba(239, 68, 68, 0.2)',
-              borderRadius: '8px',
-              color: '#f43f5e',
-              padding: '0.75rem',
-              fontSize: '0.875rem',
-              marginBottom: '1.25rem',
-              textAlign: 'center'
-            }}>
-              {apiError}
+        <div className="auth-card-content">
+          <div className="auth-card-left">
+            <div className="auth-header">
+              <h1 className="auth-title">Welcome Back</h1>
+              <p className="auth-subtitle">Sign in to your Vectra dashboard</p>
             </div>
-          )}
-          <InputField
-            id="email"
-            label="Email Address"
-            type="email"
-            value={values.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={errors.email}
-            touched={touched.email}
-          />
-          <InputField
-            id="password"
-            label="Password"
-            type="password"
-            value={values.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={errors.password}
-            touched={touched.password}
-          />
-
-          <div className="auth-extras">
-            <label className="checkbox-wrapper">
-              <input type="checkbox" />
-              <span>Remember me</span>
-            </label>
-            <Link to="#" className="forgot-link">Forgot Password?</Link>
+            
+            <div className="micro-text">
+              <span>Secure</span>
+              <span>•</span>
+              <span>Encrypted</span>
+              <span>•</span>
+              <span>Reliable</span>
+            </div>
           </div>
 
-          <GradientButton disabled={!isValid}>Sign In</GradientButton>
-        </form>
+          <div className="auth-card-right">
+            <form className="auth-form" onSubmit={handleSubmit} noValidate>
+              {apiError && (
+                <div className="auth-error-alert" style={{
+                  background: 'rgba(239, 68, 68, 0.1)',
+                  border: '1px solid rgba(239, 68, 68, 0.2)',
+                  borderRadius: '8px',
+                  color: '#f43f5e',
+                  padding: '0.75rem',
+                  fontSize: '0.875rem',
+                  marginBottom: '1.25rem',
+                  textAlign: 'center'
+                }}>
+                  {apiError}
+                </div>
+              )}
+              <InputField
+                id="email"
+                label="Email Address"
+                type="email"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={errors.email}
+                touched={touched.email}
+              />
+              <InputField
+                id="password"
+                label="Password"
+                type="password"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={errors.password}
+                touched={touched.password}
+              />
 
-        <div className="auth-footer">
-          <p>
-            Don't have an account? 
-            <Link to="/signup" className="footer-link">Sign Up</Link>
-          </p>
-        </div>
+              <div className="auth-extras">
+                <label className="checkbox-wrapper">
+                  <input type="checkbox" />
+                  <span>Remember me</span>
+                </label>
+                <Link to="#" className="forgot-link">Forgot Password?</Link>
+              </div>
 
-        <div className="micro-text">
-          <span>Secure</span>
-          <span>•</span>
-          <span>Encrypted</span>
-          <span>•</span>
-          <span>Reliable</span>
+              <GradientButton disabled={!isValid}>Sign In</GradientButton>
+            </form>
+
+            <div className="auth-footer">
+              <p>
+                Don't have an account? 
+                <Link to="/signup" className="footer-link">Sign Up</Link>
+              </p>
+            </div>
+          </div>
         </div>
       </AuthCard>
+      <Footer />
     </div>
   );
 };

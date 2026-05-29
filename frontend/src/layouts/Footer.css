@@ -1,7 +1,8 @@
 .footer {
+  width: 100%;
   background: var(--bg-secondary);
-  color: var(--text-muted);
-  padding: 2rem 0;
+  color: var(--text-secondary);
+  padding: 2.5rem 0;
   text-align: center;
   border-top: 1px solid var(--border);
 }
@@ -21,10 +22,11 @@
 .footer-links a {
   color: var(--text-secondary);
   font-size: 0.95rem;
+  transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
-  color: var(--primary-light);
+  color: var(--primary);
 }
 
 @media (min-width: 768px) {

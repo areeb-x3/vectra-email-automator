@@ -1,5 +1,5 @@
-import React, { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { lazy, Suspense, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './layouts/Navbar';
 import Footer from './layouts/Footer';
 import Hero from './sections/Hero';
@@ -16,13 +16,29 @@ import { SchedulerProvider } from './context/SchedulerContext';
 import { CommunityProvider } from './context/CommunityContext';
 import { ThemeProvider } from './context/ThemeContext';
 
-const LandingPage = () => (
-  <>
-    <Hero />
-    <Features />
-    <CTA />
-  </>
-);
+const LandingPage = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash === '#features') {
+      const timer = setTimeout(() => {
+        const element = document.getElementById('features');
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [location]);
+
+  return (
+    <>
+      <Hero />
+      <Features />
+      <CTA />
+    </>
+  );
+};
 
 const PageLoader = () => (
   <div style={{
@@ -52,6 +68,25 @@ const PageLoader = () => (
   </div>
 );
 
+const AppContent = () => {
+  const location = useLocation();
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/signup';
+
+  return (
+    <div className="app-wrapper">
+      <Navbar />
+      <main>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+        </Routes>
+      </main>
+      {!isAuthPage && <Footer />}
+    </div>
+  );
+};
+
 function App() {
   return (
     <ThemeProvider>
@@ -62,19 +97,7 @@ function App() {
               <Suspense fallback={<PageLoader />}>
                 <Routes>
                   <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="*" element={
-                    <div className="app-wrapper">
-                      <Navbar />
-                      <main>
-                        <Routes>
-                          <Route path="/" element={<LandingPage />} />
-                          <Route path="/login" element={<LoginPage />} />
-                          <Route path="/signup" element={<SignupPage />} />
-                        </Routes>
-                      </main>
-                      <Footer />
-                    </div>
-                  } />
+                  <Route path="*" element={<AppContent />} />
                 </Routes>
               </Suspense>
             </Router>
