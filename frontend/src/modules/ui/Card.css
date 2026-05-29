@@ -1,7 +1,5 @@
 .glass-card {
   background: var(--card-bg);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
   border-radius: 28px;
   border: 1px solid var(--border-soft);
   box-shadow: var(--shadow-elevated);

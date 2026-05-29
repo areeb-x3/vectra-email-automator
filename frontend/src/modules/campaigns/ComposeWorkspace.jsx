@@ -197,7 +197,7 @@ const ComposeWorkspace = ({ organisation }) => {
               value={body}
               onChange={(e) => setBody(e.target.value)}
               className={styles.bodyTextarea}
-              rows={12}
+              rows={7}
             />
             <div className={styles.bodyFooter}>
               <span className={styles.charCount}>{charCount} characters</span>

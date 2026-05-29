@@ -2,7 +2,30 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import './DashboardPreview.css';
 
+const FEED_ACTIVITIES = [
+  { id: 1, text: <>Email sent to segment <strong>"Early Adopters"</strong></>, time: 'Just now' },
+  { id: 2, text: <>Campaign <strong>"Product Launch Q2"</strong> completed</>, time: '2 min ago' },
+  { id: 3, text: <><strong>"Welcome Flow"</strong> automation triggered</>, time: '12 min ago' },
+  { id: 4, text: <>List <strong>"Inbound Leads"</strong> synced (412 contacts)</>, time: '1 hr ago' },
+  { id: 5, text: <>A/B test won by version <strong>"Design-B (Green Accent)"</strong></>, time: '3 hr ago' },
+  { id: 6, text: <>Webhook received for <strong>"User Signup"</strong> trigger</>, time: '4 hr ago' }
+];
+
 const DashboardPreview = () => {
+  const [activities, setActivities] = React.useState([
+    FEED_ACTIVITIES[0],
+    FEED_ACTIVITIES[1],
+    FEED_ACTIVITIES[2]
+  ]);
+
+  React.useEffect(() => {
+    // Keep "Just now" item at the top, shuffle remaining and pick 2
+    const justNowItem = FEED_ACTIVITIES.find(item => item.time === 'Just now');
+    const remainingItems = FEED_ACTIVITIES.filter(item => item.time !== 'Just now');
+    const shuffledRemaining = [...remainingItems].sort(() => 0.5 - Math.random());
+    setActivities([justNowItem, ...shuffledRemaining.slice(0, 2)]);
+  }, []);
+
   return (
     <div className="dashboard-preview">
       <div className="preview-header">
@@ -71,18 +94,18 @@ const DashboardPreview = () => {
 
       <div className="activity-feed">
         <div className="feed-header">Live Activity</div>
-        {[1, 2, 3].map((item) => (
+        {activities.map((item, index) => (
           <motion.div 
-            key={item} 
+            key={item.id} 
             className="feed-item"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.8 + item * 0.1 }}
+            transition={{ delay: 0.8 + index * 0.1 }}
           >
             <div className="pulse-dot"></div>
             <div className="feed-text">
-              <span>Email sent to segment <strong>"Early Adopters"</strong></span>
-              <span className="time">Just now</span>
+              <span>{item.text}</span>
+              <span className="time">{item.time}</span>
             </div>
           </motion.div>
         ))}

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import Button from '../ui/Button';
 import Card from '../ui/Card';
 import Badge from '../ui/Badge';
@@ -34,41 +33,9 @@ const PremiumBanner = () => {
       </div>
 
       <div className={styles.visual}>
-        <motion.div 
-          className={styles.circle1}
-          animate={{ 
-            scale: [1, 1.1, 1],
-            rotate: [0, 90, 0],
-          }}
-          transition={{ 
-            duration: 12, 
-            repeat: Infinity, 
-            ease: 'easeInOut' 
-          }}
-        />
-        <motion.div 
-          className={styles.circle2}
-          animate={{ 
-            scale: [1, 1.2, 1],
-            rotate: [0, -120, 0],
-          }}
-          transition={{ 
-            duration: 15, 
-            repeat: Infinity, 
-            ease: 'easeInOut' 
-          }}
-        />
-        <motion.div 
-          className={styles.circle3}
-          animate={{ 
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{ 
-            duration: 8, 
-            repeat: Infinity, 
-            ease: 'easeInOut' 
-          }}
-        />
+        <div className={styles.circle1} />
+        <div className={styles.circle2} />
+        <div className={styles.circle3} />
       </div>
     </Card>
   );

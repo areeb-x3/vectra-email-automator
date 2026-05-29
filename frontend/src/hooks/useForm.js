@@ -38,11 +38,8 @@ const useForm = (initialValues, validate) => {
 
 
   const handleBlur = (e) => {
-    const { id, value } = e.target;
-    setTouched(prev => ({ ...prev, [id]: true }));
-    
-    const fieldError = validateField(id, value);
-    setErrors(prev => ({ ...prev, [id]: fieldError }));
+    // No-op on blur to prevent prematurely showing validation errors when clicking out of the text box.
+    // Validation errors will only show once the user attempts to submit the form.
   };
 
   const validateForm = () => {

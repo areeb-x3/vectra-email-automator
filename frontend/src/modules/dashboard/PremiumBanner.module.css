@@ -7,6 +7,19 @@
   position: relative;
   overflow: hidden;
   min-height: 160px; /* Further reduced from 200px */
+  animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .banner::before {
@@ -87,6 +100,8 @@
   height: 130px;
   border: 2px solid rgba(var(--primary-rgb), 0.08);
   border-radius: 50%;
+  animation: floatCircle1 12s infinite ease-in-out;
+  will-change: transform;
 }
 
 .circle2 {
@@ -98,6 +113,8 @@
   height: 170px;
   border: 1px solid rgba(var(--primary-cyan-rgb), 0.08);
   border-radius: 50%;
+  animation: floatCircle2 15s infinite ease-in-out;
+  will-change: transform;
 }
 
 .circle3 {
@@ -110,6 +127,44 @@
   background: radial-gradient(circle, rgba(var(--primary-rgb), 0.15) 0%, transparent 70%);
   border-radius: 50%;
   filter: blur(8px);
+  animation: pulseOpacity 8s infinite ease-in-out;
+  will-change: opacity;
+}
+
+@keyframes floatCircle1 {
+  0% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1) rotate(90deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes floatCircle2 {
+  0% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(-120deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes pulseOpacity {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.3;
+  }
 }
 
 @media (max-width: 992px) {

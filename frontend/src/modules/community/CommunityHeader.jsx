@@ -29,9 +29,6 @@ const CommunityHeader = ({ isDetailView, onBack }) => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isSortOpen, setIsSortOpen] = useState(false);
 
-  const activeCount = allThreads.length;
-  const unresolvedCount = allThreads.filter(t => !t.isSolved).length;
-
   return (
     <>
       {!isDetailView && (
@@ -87,10 +84,6 @@ const CommunityHeader = ({ isDetailView, onBack }) => {
                   </div>
                 )}
               </div>
-            </div>
-            <div className={styles.activityStats}>
-              <span className={styles.statDot} />
-              {activeCount} active discussions • {unresolvedCount} unresolved
             </div>
           </div>
         )}

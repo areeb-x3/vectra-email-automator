@@ -89,8 +89,8 @@
 }
 
 .activeEdit {
-  background: rgba(139, 92, 246, 0.1);
-  color: #a78bfa !important;
+  background: rgba(var(--primary-rgb), 0.1);
+  color: var(--primary) !important;
 }
 
 .deleteGroupBtn {
@@ -190,7 +190,7 @@
 }
 
 .bulkInput:focus {
-  border-color: rgba(139, 92, 246, 0.5);
+  border-color: rgba(var(--primary-rgb), 0.5);
 }
 
 .editActions {
@@ -206,9 +206,9 @@
 }
 
 .recipientChip {
-  background: rgba(139, 92, 246, 0.1);
-  border: 1px solid rgba(139, 92, 246, 0.2);
-  color: #a78bfa;
+  background: rgba(var(--primary-rgb), 0.1);
+  border: 1px solid rgba(var(--primary-rgb), 0.2);
+  color: var(--primary);
   padding: 0.25rem 0.75rem;
   border-radius: 100px;
   display: flex;
@@ -231,7 +231,7 @@
 }
 
 .removeRecipient:hover {
-  background: rgba(139, 92, 246, 0.2);
+  background: rgba(var(--primary-rgb), 0.2);
 }
 
 .emptyRecipients {

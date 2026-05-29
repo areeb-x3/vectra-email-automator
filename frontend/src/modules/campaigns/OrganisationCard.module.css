@@ -17,7 +17,7 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at center, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+  background: radial-gradient(circle at center, rgba(var(--primary-rgb), 0.08) 0%, transparent 50%);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -153,8 +153,8 @@
 
 .quickCompose {
   background: transparent;
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  color: var(--primary-purple);
+  border: 1px solid rgba(var(--primary-rgb), 0.3);
+  color: var(--primary);
   padding: 0.5rem 1rem;
   border-radius: 10px;
   font-size: 0.8125rem;
@@ -164,6 +164,6 @@
 }
 
 .quickCompose:hover {
-  background: rgba(139, 92, 246, 0.1);
-  border-color: var(--primary-purple);
+  background: rgba(var(--primary-rgb), 0.1);
+  border-color: var(--primary);
 }

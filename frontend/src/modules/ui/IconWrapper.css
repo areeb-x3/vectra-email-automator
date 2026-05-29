@@ -25,3 +25,8 @@
   box-shadow: 0 4px 10px rgba(var(--theme-shadow-rgb), 0.2);
   animation: icon-pulse 3s ease-in-out infinite;
 }
+
+.icon-wrapper.no-glow {
+  animation: none;
+  box-shadow: none;
+}

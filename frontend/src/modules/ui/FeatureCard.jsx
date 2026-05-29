@@ -3,7 +3,7 @@ import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import IconWrapper from './IconWrapper';
 import './FeatureCard.css';
 
-const FeatureCard = ({ icon, title, description }) => {
+const FeatureCard = ({ icon, title, description, iconColor, iconColorRgb }) => {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -48,7 +48,14 @@ const FeatureCard = ({ icon, title, description }) => {
       whileHover={{ y: -6 }}
     >
       <div style={{ transform: "translateZ(50px)" }}>
-        <IconWrapper>
+        <IconWrapper 
+          glow={false}
+          style={{
+            borderColor: iconColor ? `rgba(${iconColorRgb}, 0.25)` : 'var(--border)',
+            background: iconColor ? `rgba(${iconColorRgb}, 0.05)` : 'var(--bg-secondary)',
+            boxShadow: iconColor ? `0 8px 24px rgba(${iconColorRgb}, 0.08)` : 'none'
+          }}
+        >
           {icon}
         </IconWrapper>
         <h3>{title}</h3>

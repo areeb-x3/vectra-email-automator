@@ -139,8 +139,8 @@
 }
 
 .searchBox:focus-within {
-  border-color: rgba(99, 102, 241, 0.4);
-  box-shadow: 0 0 15px rgba(99, 102, 241, 0.1);
+  border-color: rgba(var(--primary-rgb), 0.4);
+  box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.1);
   background: rgba(var(--theme-glass-rgb), 0.02);
 }
 

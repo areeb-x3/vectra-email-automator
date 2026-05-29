@@ -2,8 +2,8 @@
   background: var(--bg-surface);
   padding: 3rem 2.5rem;
   border-radius: var(--border-radius);
-  border: 1px solid var(--border);
-  transition: box-shadow 0.3s ease;
+  border: 2px solid var(--border-dark);
+  transition: var(--transition);
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -12,17 +12,17 @@
 }
 
 .feature-card:hover {
-  box-shadow: var(--shadow);
-  border-color: var(--primary-light);
+  border-color: var(--primary);
+  box-shadow: 0 0 30px rgba(var(--primary-rgb), 0.15);
 }
 
-.card-shine {
+.feature-card .card-shine {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(var(--primary-rgb), 0.1) 0%, transparent 80%);
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(var(--primary-rgb), 0.15) 0%, transparent 80%);
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.3s;
